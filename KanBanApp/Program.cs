@@ -14,4 +14,5 @@ builder.Services.AddFluxor(options =>
     options.ScanAssemblies(Assembly.GetExecutingAssembly());
     options.UseReduxDevTools();
 });
+
 await builder.Build().RunAsync();
