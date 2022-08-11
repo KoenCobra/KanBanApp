@@ -13,7 +13,7 @@ public class KanbanApi : IKanBanApi
         _httpClient = httpClient;
     }
 
-    public Task<TResponse> GetAsync<TResponse>(string path)
+    public Task<TResponse?> GetAsync<TResponse>(string path)
     {
         return _httpClient.GetFromJsonAsync<TResponse>(path);
     }
