@@ -301,22 +301,6 @@
                 {
                   "title": "Gather assets",
                   "isCompleted": false
-                },
-                {
-                  "title": "Draft product page",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Notify customers",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Notify network",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Launch!",
-                  "isCompleted": false
                 }
               ]
             },
@@ -351,26 +335,10 @@
                 {
                   "title": "Publish on LinkedIn",
                   "isCompleted": false
-                },
-                {
-                  "title": "Publish on Inndie Hackers",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Publish on Medium",
-                  "isCompleted": false
                 }
               ]
             }
           ]
-        },
-        {
-          "name": "Doing",
-          "tasks": []
-        },
-        {
-          "name": "Done",
-          "tasks": []
         }
       ]
     }
