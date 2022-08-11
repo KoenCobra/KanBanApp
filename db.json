@@ -18,10 +18,6 @@
                 {
                   "title": "Sign in page",
                   "isCompleted": false
-                },
-                {
-                  "title": "Welcome page",
-                  "isCompleted": false
                 }
               ]
             },
@@ -83,10 +79,6 @@
                 {
                   "title": "Settings - Billing page",
                   "isCompleted": true
-                },
-                {
-                  "title": "Search page",
-                  "isCompleted": false
                 }
               ]
             },
@@ -102,10 +94,6 @@
                 {
                   "title": "Cancel plan",
                   "isCompleted": true
-                },
-                {
-                  "title": "Update payment method",
-                  "isCompleted": false
                 }
               ]
             },
@@ -120,10 +108,6 @@
                 },
                 {
                   "title": "Sign in page",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Welcome page",
                   "isCompleted": false
                 }
               ]
@@ -169,10 +153,6 @@
                 },
                 {
                   "title": "Outline a business model that works for our solution",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                   "isCompleted": false
                 }
               ]
