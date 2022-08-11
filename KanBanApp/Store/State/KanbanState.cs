@@ -1,15 +1,15 @@
-﻿using KanBanApp.Models;
+﻿using KanbanApp.Models;
 
 namespace KanBanApp.Store.State;
 
 public class KanbanState
 {
-    public KanbanState(KanbanRootObject? kanbanRootObject, Board? board)
+    public KanbanState(KanBanObject? boards, Board? board)
     {
-        KanbanRootObject = kanbanRootObject;
+        Boards = boards;
         Board = board;
     }
 
-    public KanbanRootObject? KanbanRootObject { get; }
+    public KanBanObject? Boards { get; }
     public Board? Board { get; }
 }

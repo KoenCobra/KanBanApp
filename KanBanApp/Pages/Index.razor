@@ -1,14 +1,26 @@
 ﻿@page "/"
-@using FluxorComponent = Fluxor.Blazor.Web.Components.FluxorComponent
-@using Task = System.Threading.Tasks.Task
 @inherits FluxorComponent
+@inject StateFacade Facade
+@inject IState<KanbanState> KanBanState
 
+@foreach (var item in KanBanObject.boards)
+{
+    <a href="@($"board/{item.name}")">
+        <p>@item.name</p>
+    </a>
+}
 @code
 {
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-    }
+    public KanBanObject? KanBanObject { get; set; } = new();
 
+    //protected override void OnInitialized()
+    //{
+    //    if (KanbanState.Value.Boards is null)
+    //    {
+    //        Facade.LoadKanBan();
+    //    }
+
+    //    base.OnInitialized();
+    //}
 }
 

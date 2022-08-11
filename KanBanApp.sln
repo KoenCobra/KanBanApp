@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32802.462
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanBanApp", "KanBanApp\KanBanApp.csproj", "{04F95F32-43FD-4DE7-8DC4-D03B41DD6FC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KanBanApp", "KanBanApp\KanBanApp.csproj", "{04F95F32-43FD-4DE7-8DC4-D03B41DD6FC6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KanbanApp.Models", "KanbanApp.Models\KanbanApp.Models.csproj", "{28A3871F-0FB2-4C9A-9DDA-E8C77F917AAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KanBanApp.Sdk", "KanBanApp.Sdk\KanBanApp.Sdk.csproj", "{3D71B91A-E9B6-4282-A2AA-0E204345BB74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{04F95F32-43FD-4DE7-8DC4-D03B41DD6FC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F95F32-43FD-4DE7-8DC4-D03B41DD6FC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F95F32-43FD-4DE7-8DC4-D03B41DD6FC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A3871F-0FB2-4C9A-9DDA-E8C77F917AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A3871F-0FB2-4C9A-9DDA-E8C77F917AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A3871F-0FB2-4C9A-9DDA-E8C77F917AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A3871F-0FB2-4C9A-9DDA-E8C77F917AAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D71B91A-E9B6-4282-A2AA-0E204345BB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D71B91A-E9B6-4282-A2AA-0E204345BB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D71B91A-E9B6-4282-A2AA-0E204345BB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D71B91A-E9B6-4282-A2AA-0E204345BB74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

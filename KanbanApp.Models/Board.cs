@@ -1,4 +1,4 @@
-﻿namespace KanBanApp.Models;
+﻿namespace KanbanApp.Models;
 
 public class Board
 {
