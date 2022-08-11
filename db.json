@@ -14,10 +14,6 @@
                 {
                   "title": "Sign up page",
                   "isCompleted": true
-                },
-                {
-                  "title": "Sign in page",
-                  "isCompleted": false
                 }
               ]
             },
@@ -40,10 +36,6 @@
                 {
                   "title": "Account page",
                   "isCompleted": false
-                },
-                {
-                  "title": "Billing page",
-                  "isCompleted": false
                 }
               ]
             },
@@ -54,10 +46,6 @@
               "subtasks": [
                 {
                   "title": "Internal testing",
-                  "isCompleted": false
-                },
-                {
-                  "title": "External testing",
                   "isCompleted": false
                 }
               ]
@@ -74,10 +62,6 @@
               "subtasks": [
                 {
                   "title": "Settings - Account page",
-                  "isCompleted": true
-                },
-                {
-                  "title": "Settings - Billing page",
                   "isCompleted": true
                 }
               ]
@@ -105,10 +89,6 @@
                 {
                   "title": "Sign up page",
                   "isCompleted": true
-                },
-                {
-                  "title": "Sign in page",
-                  "isCompleted": false
                 }
               ]
             },
@@ -120,10 +100,6 @@
                 {
                   "title": "Add search endpoint",
                   "isCompleted": true
-                },
-                {
-                  "title": "Define search filters",
-                  "isCompleted": false
                 }
               ]
             },
@@ -135,10 +111,6 @@
                 {
                   "title": "Define user model",
                   "isCompleted": true
-                },
-                {
-                  "title": "Add auth endpoints",
-                  "isCompleted": false
                 }
               ]
             },
@@ -150,10 +122,6 @@
                 {
                   "title": "Research competitor pricing and business models",
                   "isCompleted": true
-                },
-                {
-                  "title": "Outline a business model that works for our solution",
-                  "isCompleted": false
                 }
               ]
             }
@@ -192,14 +160,6 @@
                 {
                   "title": "Meet to review notes from previous tests and plan changes",
                   "isCompleted": true
-                },
-                {
-                  "title": "Make changes to paper prototypes",
-                  "isCompleted": true
-                },
-                {
-                  "title": "Conduct 5 usability tests",
-                  "isCompleted": true
                 }
               ]
             },
@@ -210,10 +170,6 @@
               "subtasks": [
                 {
                   "title": "Create paper prototypes for version one",
-                  "isCompleted": true
-                },
-                {
-                  "title": "Complete 10 usability tests",
                   "isCompleted": true
                 }
               ]
@@ -236,10 +192,6 @@
               "subtasks": [
                 {
                   "title": "Find direct and indirect competitors",
-                  "isCompleted": true
-                },
-                {
-                  "title": "SWOT analysis for each competitor",
                   "isCompleted": true
                 }
               ]
@@ -291,14 +243,6 @@
               "subtasks": [
                 {
                   "title": "Draft out HN post",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Get feedback and refine",
-                  "isCompleted": false
-                },
-                {
-                  "title": "Publish post",
                   "isCompleted": false
                 }
               ]
