@@ -1,6 +1,4 @@
-﻿using KanbanApp.Models;
-
-namespace KanBanApp.Store.Actions.Delete;
+﻿namespace KanBanApp.Store.Actions.Delete;
 
 public class DeleteKanBanAction
 {

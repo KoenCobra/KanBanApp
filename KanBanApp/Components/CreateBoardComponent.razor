@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Components
+@using KanBanApp.Store
+@using KanBanApp.Models
+@inherits FluxorComponent
+@inject StateFacade Facade
+
+<EditForm Model="Board" OnSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <h2>Add New Board</h2>
+    <div class="input">
+        <label>Name</label>
+        <input type="text" @bind-value="Board.name" />
+    </div>
+    <button type="submit">create</button>
+</EditForm>
+
+@code {
+    private Board Board { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private void HandleValidSubmit()
+    {
+    }
+
+}

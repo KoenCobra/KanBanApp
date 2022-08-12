@@ -1,8 +1,7 @@
 ﻿using Fluxor;
-using KanBanApp.Store.Actions.Delete;
 using KanBanApp.Store.Actions.Load;
 
-namespace KanBanApp.Store.Facade;
+namespace KanBanApp.Store;
 
 public class StateFacade
 {
@@ -16,10 +15,5 @@ public class StateFacade
     public void LoadKanBan()
     {
         _dispatcher.Dispatch(new LoadKanbanAction());
-    }
-
-    public void DeleteBoard(string name)
-    {
-        _dispatcher.Dispatch(new DeleteKanBanAction(name));
     }
 }

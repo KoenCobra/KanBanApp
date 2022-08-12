@@ -1,26 +1,33 @@
 ﻿@page "/"
+@using KanBanApp.Store
 @inherits FluxorComponent
 @inject StateFacade Facade
 @inject IState<KanbanState> KanBanState
 
-@foreach (var item in KanBanObject.boards)
+
+<CreateBoardComponent />
+
+@if (KanBanState.Value.Boards is not null)
 {
-    <a href="@($"board/{item.name}")">
-        <p>@item.name</p>
-    </a>
+    @foreach (var item in KanBanState.Value.Boards.boards)
+    {
+        <a href="@($"board/{item.name}")">
+            <p>@item.name</p>
+        </a>
+    }
 }
+
+
+
 @code
 {
-    public KanBanObject? KanBanObject { get; set; } = new();
+    protected override void OnInitialized()
+    {
+        if (KanBanState.Value.Boards is null)
+        {
+            Facade.LoadKanBan();
+        }
 
-    //protected override void OnInitialized()
-    //{
-    //    if (KanbanState.Value.Boards is null)
-    //    {
-    //        Facade.LoadKanBan();
-    //    }
-
-    //    base.OnInitialized();
-    //}
+        base.OnInitialized();
+    }
 }
-

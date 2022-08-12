@@ -1,4 +1,4 @@
-﻿using KanbanApp.Models;
+﻿using KanBanApp.Models;
 
 namespace KanBanApp.Store.Actions.Load;
 

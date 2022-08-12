@@ -13,9 +13,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.7" PrivateAssets="all" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\KanbanApp.Models\KanbanApp.Models.csproj" />
-    <ProjectReference Include="..\KanBanApp.Sdk\KanBanApp.Sdk.csproj" />
-  </ItemGroup>
-
 </Project>

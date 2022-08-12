@@ -1,14 +1,14 @@
 ﻿using System.Net.Http.Json;
-using KanbanApp.Models;
-using KanBanApp.Sdk.Abstractions;
+using KanBanApp.Services.Abstractions;
+using KanBanApp.Store;
 
-namespace KanBanApp.Sdk;
+namespace KanBanApp.Services;
 
-public class KanbanApi : IKanBanApi
+public class KanbanService : IKanbanService
 {
     private readonly HttpClient _httpClient;
 
-    public KanbanApi(HttpClient httpClient)
+    public KanbanService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
@@ -31,5 +31,12 @@ public class KanbanApi : IKanBanApi
     public Task<HttpResponseMessage> DeleteAsync(string path)
     {
         return _httpClient.DeleteAsync(path);
+    }
+
+    public void Delete(string name, KanbanState state)
+    {
+        var board = state.Boards.boards.FirstOrDefault(b => b.name == name);
+
+        if (board != null) state.Boards.boards.Remove(board);
     }
 }

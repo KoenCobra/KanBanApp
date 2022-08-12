@@ -1,6 +1,6 @@
-﻿using KanbanApp.Models;
+﻿using KanBanApp.Models;
 
-namespace KanBanApp.Store.State;
+namespace KanBanApp.Store;
 
 public class KanbanState
 {

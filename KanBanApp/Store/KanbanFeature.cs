@@ -1,7 +1,6 @@
 ﻿using Fluxor;
-using KanBanApp.Store.State;
 
-namespace KanBanApp.Store.Feature;
+namespace KanBanApp.Store;
 
 public class KanbanFeature : Feature<KanbanState>
 {

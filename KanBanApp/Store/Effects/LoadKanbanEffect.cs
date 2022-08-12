@@ -1,23 +1,23 @@
-﻿using Fluxor;
-using KanbanApp.Models;
-using KanBanApp.Sdk.Abstractions;
+﻿using System.Net.Http.Json;
+using Fluxor;
+using KanBanApp.Models;
 using KanBanApp.Store.Actions.Load;
-using Task = System.Threading.Tasks.Task;
 
 namespace KanBanApp.Store.Effects;
 
 public class LoadKanbanEffect : Effect<LoadKanbanAction>
 {
-    private readonly IKanBanApi _kanbanApi;
+    private readonly HttpClient _httpClient;
 
-    public LoadKanbanEffect(IKanBanApi kanbanApi)
+    public LoadKanbanEffect(HttpClient kanbanApi)
     {
-        _kanbanApi = kanbanApi;
+        _httpClient = kanbanApi;
     }
 
-    public override async Task HandleAsync(LoadKanbanAction action, IDispatcher dispatcher)
+    public override async System.Threading.Tasks.Task HandleAsync(LoadKanbanAction action, IDispatcher dispatcher)
     {
-        var response = await _kanbanApi.GetAsync<KanBanObject>("db");
-        //dispatcher.Dispatch(new LoadKanbanSuccessAction(await _kanbanApi.GetKanbanRootObject()));
+        var response = await _httpClient.GetFromJsonAsync<KanBanObject>("data.json"); ;
+
+        dispatcher.Dispatch(new LoadKanbanSuccessAction(response));
     }
 }
