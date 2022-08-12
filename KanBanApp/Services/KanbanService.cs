@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using Fluxor;
+using KanBanApp.Models;
 using KanBanApp.Services.Abstractions;
 using KanBanApp.Store;
 
@@ -6,32 +7,28 @@ namespace KanBanApp.Services;
 
 public class KanbanService : IKanbanService
 {
-    private readonly HttpClient _httpClient;
+    private readonly IState<KanbanState>? _state;
 
-    public KanbanService(HttpClient httpClient)
+    public KanbanService(IState<KanbanState>? state)
     {
-        _httpClient = httpClient;
+        _state = state;
     }
 
-    public Task<TResponse?> GetAsync<TResponse>(string path)
+    public IEnumerable<Board>? GetBoardDetails(string name)
     {
-        return _httpClient.GetFromJsonAsync<TResponse>(path);
+        if (_state != null && _state.Value.Boards != null && _state.Value.Boards.boards != null)
+            return _state.Value.Boards.boards.Where(b => b.name == name);
+
+        return new List<Board>();
     }
 
-    public Task<HttpResponseMessage> PostAsync<TBody>(string path, TBody body)
+    public void Delete(string name)
     {
-        return _httpClient.PostAsJsonAsync(path, body);
-    }
+        if (_state != null && _state.Value.Boards != null && _state.Value.Boards.boards != null)
+        {
+            var board = _state.Value.Boards.boards.FirstOrDefault(b => b.name == name);
 
-    public Task<HttpResponseMessage> PutAsync<TBody>(string path, TBody body)
-    {
-        return _httpClient.PutAsJsonAsync(path, body);
-    }
-
-    public void Delete(string name, KanbanState state)
-    {
-        var board = state.Boards.boards.FirstOrDefault(b => b.name == name);
-
-        if (board != null) state.Boards.boards.Remove(board);
+            if (board != null) _state.Value.Boards.boards.Remove(board);
+        }
     }
 }

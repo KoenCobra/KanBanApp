@@ -1,11 +1,9 @@
-﻿using KanBanApp.Store;
+﻿using KanBanApp.Models;
 
 namespace KanBanApp.Services.Abstractions;
 
 public interface IKanbanService
 {
-    Task<TResponse?> GetAsync<TResponse>(string path);
-    Task<HttpResponseMessage> PostAsync<TBody>(string path, TBody body);
-    Task<HttpResponseMessage> PutAsync<TBody>(string path, TBody body);
-    void Delete(string name, KanbanState state);
+    IEnumerable<Board>? GetBoardDetails(string name);
+    void Delete(string name);
 }

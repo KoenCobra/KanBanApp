@@ -1,39 +1,31 @@
 ﻿@page "/board/{name}"
-@using KanBanApp.Services.Abstractions
-@using KanBanApp.Store
 @inherits FluxorComponent
 @inject IKanbanService KanbanService
 @inject IState<KanbanState> KanBanState
 
-@if (KanBanState.Value.Boards is not null)
+@foreach (var board in KanbanService.GetBoardDetails(Name)!)
 {
-    @if (KanBanState.Value.Boards.boards is not null)
+    <p>@board.name</p>
+    @if (board.columns != null)
     {
-        @foreach (var board in KanBanState.Value.Boards.boards.Where(b => b.name == Name))
+        foreach (var column in board.columns)
         {
-            <p>@board.name</p>
-            @if (board.columns != null)
+            @column.name
+
+            @if (column.tasks != null)
             {
-                foreach (var column in board.columns)
+                foreach (var task in column.tasks)
                 {
-                    @column.name
+                    <p>@task.description</p>
+                    <p>@task.title</p>
+                    <p>@task.status</p>
 
-                    @if (column.tasks != null)
+                    @if (task.subtasks != null)
                     {
-                        foreach (var task in column.tasks)
+                        foreach (var subTask in task.subtasks)
                         {
-                            <p>@task.description</p>
-                            <p>@task.title</p>
-                            <p>@task.status</p>
-
-                            @if (task.subtasks != null)
-                            {
-                                foreach (var subTask in task.subtasks)
-                                {
-                                    <p>@subTask.title</p>
-                                    <p>@subTask.isCompleted</p>
-                                }
-                            }
+                            <p>@subTask.title</p>
+                            <p>@subTask.isCompleted</p>
                         }
                     }
                 }
@@ -41,8 +33,8 @@
         }
     }
 }
+<button @onclick="() => KanbanService.Delete(Name)">delete</button>
 
-<button @onclick="() => KanbanService.Delete(Name, KanBanState.Value)">delete</button>
 @code {
     [Parameter]
     public string Name { get; set; } = "";

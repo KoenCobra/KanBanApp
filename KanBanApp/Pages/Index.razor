@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using KanBanApp.Store
 @inherits FluxorComponent
 @inject StateFacade Facade
 @inject IState<KanbanState> KanBanState
@@ -9,15 +8,16 @@
 
 @if (KanBanState.Value.Boards is not null)
 {
-    @foreach (var item in KanBanState.Value.Boards.boards)
+    @if (KanBanState.Value.Boards.boards != null)
     {
-        <a href="@($"board/{item.name}")">
-            <p>@item.name</p>
-        </a>
+        foreach (var item in KanBanState.Value.Boards.boards)
+        {
+            <a href="@($"board/{item.name}")">
+                <p>@item.name</p>
+            </a>
+        }
     }
 }
-
-
 
 @code
 {
