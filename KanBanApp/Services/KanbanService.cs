@@ -28,11 +28,6 @@ public class KanbanService : IKanbanService
         return _httpClient.PutAsJsonAsync(path, body);
     }
 
-    public Task<HttpResponseMessage> DeleteAsync(string path)
-    {
-        return _httpClient.DeleteAsync(path);
-    }
-
     public void Delete(string name, KanbanState state)
     {
         var board = state.Boards.boards.FirstOrDefault(b => b.name == name);
