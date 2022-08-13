@@ -20,7 +20,7 @@ public class StateFacade
         _dispatcher.Dispatch(new LoadKanbanAction());
     }
 
-    public void CreateBoard(Board board)
+    public void CreateBoard(Board? board)
     {
         _dispatcher.Dispatch(new CreateBoardAction(board));
     }

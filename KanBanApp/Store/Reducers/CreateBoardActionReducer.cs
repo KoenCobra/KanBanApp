@@ -15,7 +15,7 @@ public class CreateBoardActionReducer
     [ReducerMethod]
     public static KanbanState ReduceCreateBoardSuccessAction(KanbanState state, CreateBoardSuccessAction action)
     {
-        var boards = state.Boards is null ? new List<Board>() : state.Boards;
+        var boards = state.Boards is null ? new List<Board>() : state.Boards.ToList();
 
         if (action.Board != null) boards.Add(action.Board);
 

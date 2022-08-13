@@ -2,7 +2,7 @@
 @inherits FluxorComponent
 @inject StateFacade Facade
 
-<EditForm Model="Board" OnSubmit="HandleSubmit">
+<EditForm Model="Board">
     <DataAnnotationsValidator />
     <h2>Add New Board</h2>
     <div class="input">
@@ -19,10 +19,10 @@
                 <input type="text" @bind-value="column.name" />
             }
         }
-        <button @onclick="AddNewColumn">Add New Column</button>
     </div>
-    <button type="submit">create</button>
 </EditForm>
+<button @onclick="AddNewColumn">Add New Column</button>
+<button @onclick="() => Facade.CreateBoard(Board)">create</button>
 
 @code {
     private Board? Board { get; set; }
@@ -30,9 +30,9 @@
     protected override void OnInitialized()
     {
         Board = new Board
-        {
-            name = "",
-            columns = new List<Column>
+            {
+                name = "",
+                columns = new List<Column>
             {
                 new()
                 {
@@ -45,14 +45,9 @@
                     tasks = new List<Task>()
                 }
             }
-        };
+            };
 
         base.OnInitialized();
-    }
-
-    private void HandleSubmit()
-    {
-        Facade.CreateBoard(Board);
     }
 
     private void AddNewColumn()

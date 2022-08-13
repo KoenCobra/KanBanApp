@@ -1,44 +1,44 @@
 ﻿@page "/board/{name}"
 @inherits FluxorComponent
+@inject IState<KanbanState> State
+@inject StateFacade Facade
 
-@*@foreach (var board in )
+@if (State.Value.Boards is not null)
 {
-    <p>@board.name</p>
-    @if (board.columns != null)
+    @foreach (var board in State.Value.Boards.Where(b => b.name == Name))
     {
-        foreach (var column in board.columns)
+        <p>@board.name</p>
+        @if (board.columns != null)
         {
-            @column.name
-
-            @if (column.tasks != null)
+            foreach (var column in board.columns)
             {
-                foreach (var task in column.tasks)
-                {
-                    <p>@task.description</p>
-                    <p>@task.title</p>
-                    <p>@task.status</p>
+                @column.name
 
-                    @if (task.subtasks != null)
+                @if (column.tasks != null)
+                {
+                    foreach (var task in column.tasks)
                     {
-                        foreach (var subTask in task.subtasks)
+                        <p>@task.description</p>
+                        <p>@task.title</p>
+                        <p>@task.status</p>
+
+                        @if (task.subtasks != null)
                         {
-                            <p>@subTask.title</p>
-                            <p>@subTask.isCompleted</p>
+                            foreach (var subTask in task.subtasks)
+                            {
+                                <p>@subTask.title</p>
+                                <p>@subTask.isCompleted</p>
+                            }
                         }
                     }
                 }
             }
         }
     }
+    <button @onclick="() => Facade.DeleteBoard(Name)">delete</button>
 }
-<button @onclick="() => ">delete</button>*@
 
 @code {
     [Parameter]
     public string Name { get; set; } = "";
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
 }
