@@ -18,7 +18,7 @@
 
 @if (_isAddNewBoardShowing)
 {
-    <CreateBoardComponent />
+    <CreateBoardComponent OnCreate="CloseCreateComponent" />
 }
 
 @code
@@ -38,4 +38,11 @@
     {
         _isAddNewBoardShowing = true;
     }
+
+    private void CloseCreateComponent()
+    {
+        _isAddNewBoardShowing = false;
+
+    }
 }
+

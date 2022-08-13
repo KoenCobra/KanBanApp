@@ -9,7 +9,7 @@ public class CreateBoardActionReducer
     [ReducerMethod]
     public static KanbanState ReduceCreateBoardAction(KanbanState state, CreateBoardAction action)
     {
-        return new KanbanState(state.Boards);
+        return new KanbanState(state.Boards, state.Board);
     }
 
     [ReducerMethod]
@@ -19,6 +19,6 @@ public class CreateBoardActionReducer
 
         if (action.Board != null) boards.Add(action.Board);
 
-        return new KanbanState(boards);
+        return new KanbanState(boards, state.Board);
     }
 }

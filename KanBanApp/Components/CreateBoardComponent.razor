@@ -1,13 +1,14 @@
 ﻿@using Task = KanBanApp.Models.Task
 @inherits FluxorComponent
 @inject StateFacade Facade
+@inject NavigationManager NavigationManager
 
 <EditForm Model="Board">
     <DataAnnotationsValidator />
     <h2>Add New Board</h2>
     <div class="input">
         <label>Board Name</label>
-        <input type="text" @bind-value="Board.name" />
+        <InputText @bind-Value="Board.name" />
     </div>
 
     <div class="input">
@@ -22,10 +23,13 @@
     </div>
 </EditForm>
 <button @onclick="AddNewColumn">Add New Column</button>
-<button @onclick="() => Facade.CreateBoard(Board)">create</button>
+<button @onclick="CreateBoard">create</button>
 
 @code {
     private Board? Board { get; set; }
+
+    [Parameter]
+    public EventCallback OnCreate { get; set; }
 
     protected override void OnInitialized()
     {
@@ -56,5 +60,11 @@
             {
                 name = ""
             });
+    }
+
+    private void CreateBoard()
+    {
+        Facade.CreateBoard(Board);
+        OnCreate.InvokeAsync();
     }
 }

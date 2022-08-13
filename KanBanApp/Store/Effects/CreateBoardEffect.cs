@@ -15,17 +15,9 @@ public class CreateBoardEffect : Effect<CreateBoardAction>
         _httpClient = httpClient;
     }
 
-    public override async Task HandleAsync(CreateBoardAction action, IDispatcher dispatcher)
+    public override Task HandleAsync(CreateBoardAction action, IDispatcher dispatcher)
     {
-        var createResponse = await _httpClient.PostAsJsonAsync("data.json", action.Board);
-
-        if (!createResponse.IsSuccessStatusCode)
-        {
-            throw new HttpRequestException($"Error creating board: {createResponse.ReasonPhrase}");
-        }
-
-        var createdBoard = await createResponse.Content.ReadFromJsonAsync<Board>();
-
         dispatcher.Dispatch(new CreateBoardSuccessAction(action.Board));
+        return Task.CompletedTask;
     }
 }
