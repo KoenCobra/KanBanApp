@@ -1,11 +1,10 @@
-﻿@page "/board/{name}"
-@inherits FluxorComponent
+﻿@inherits FluxorComponent
 @inject IState<KanbanState> State
 @inject StateFacade Facade
 
 @if (State.Value.Boards is not null)
 {
-    @foreach (var board in State.Value.Boards.Where(b => b.name == Name))
+    @foreach (var board in State.Value.Boards.Where(b => b.name == Board.name))
     {
         <p>@board.name</p>
         @if (board.columns != null)
@@ -35,10 +34,31 @@
             }
         }
     }
-    <button @onclick="() => Facade.DeleteBoard(Name)">delete</button>
+    <button @onclick="() => Facade.DeleteBoard(Board.name)">delete</button>
+
+    <button @onclick="UpdateBoard">Update</button>
+
+    @if (_isUpdateShowing)
+    {
+        <UpdateBoardComponent Board="Board" OnEdit="CloseUpdate" />
+    }
 }
+
 
 @code {
     [Parameter]
-    public string Name { get; set; } = "";
+    public Board? Board { get; set; }
+
+    private bool _isUpdateShowing;
+
+    private void UpdateBoard()
+    {
+        _isUpdateShowing = true;
+    }
+
+    private void CloseUpdate()
+    {
+        _isUpdateShowing = false;
+    }
+
 }

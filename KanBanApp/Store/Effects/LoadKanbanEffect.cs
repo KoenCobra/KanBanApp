@@ -18,6 +18,7 @@ public class LoadKanbanEffect : Effect<LoadKanbanAction>
     public override async Task HandleAsync(LoadKanbanAction action, IDispatcher dispatcher)
     {
         var response = await _httpClient.GetFromJsonAsync<KanBanObject>("data.json");
+
         if (response != null)
         {
             var boards = response.boards;

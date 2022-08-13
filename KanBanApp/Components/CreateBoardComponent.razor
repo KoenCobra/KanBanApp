@@ -1,7 +1,6 @@
 ﻿@using Task = KanBanApp.Models.Task
 @inherits FluxorComponent
 @inject StateFacade Facade
-@inject NavigationManager NavigationManager
 
 <EditForm Model="Board">
     <DataAnnotationsValidator />
@@ -21,9 +20,9 @@
             }
         }
     </div>
+<button type="submit" @onclick="CreateBoard">create</button>
 </EditForm>
 <button @onclick="AddNewColumn">Add New Column</button>
-<button @onclick="CreateBoard">create</button>
 
 @code {
     private Board? Board { get; set; }

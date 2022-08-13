@@ -7,14 +7,13 @@
 {
     @foreach (var board in State.Value.Boards)
     {
-        <a href="@($"board/{board.name}")">
-            <p>@board.name</p>
-        </a>
-        <button @onclick="() => Facade.DeleteBoard(board.name)">delete</button>
+        <p @onclick="() => _board.name = board.name">@board.name</p>
     }
 }
 
 <button @onclick="CreateNewBoard">Create New Board</button>
+
+<BoardComponent Board="@_board" />
 
 @if (_isAddNewBoardShowing)
 {
@@ -24,13 +23,15 @@
 @code
 {
     private bool _isAddNewBoardShowing;
+    private Board? _board = new();
 
     protected override void OnInitialized()
     {
-        @if (State.Value.Boards is null)
+        if (State.Value.Boards is null)
         {
             Facade.LoadKanBan();
         }
+
         base.OnInitialized();
     }
 
@@ -42,7 +43,6 @@
     private void CloseCreateComponent()
     {
         _isAddNewBoardShowing = false;
-
     }
 }
 

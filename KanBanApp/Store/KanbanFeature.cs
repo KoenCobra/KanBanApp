@@ -11,6 +11,6 @@ public class KanbanFeature : Feature<KanbanState>
 
     protected override KanbanState GetInitialState()
     {
-        return new KanbanState(null, null);
+        return new KanbanState(null);
     }
 }
