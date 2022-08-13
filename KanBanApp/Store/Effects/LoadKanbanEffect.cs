@@ -2,6 +2,7 @@
 using Fluxor;
 using KanBanApp.Models;
 using KanBanApp.Store.Actions.Load;
+using Task = System.Threading.Tasks.Task;
 
 namespace KanBanApp.Store.Effects;
 
@@ -14,10 +15,13 @@ public class LoadKanbanEffect : Effect<LoadKanbanAction>
         _httpClient = kanbanApi;
     }
 
-    public override async System.Threading.Tasks.Task HandleAsync(LoadKanbanAction action, IDispatcher dispatcher)
+    public override async Task HandleAsync(LoadKanbanAction action, IDispatcher dispatcher)
     {
-        var response = await _httpClient.GetFromJsonAsync<KanBanObject>("data.json"); ;
-
-        dispatcher.Dispatch(new LoadKanbanSuccessAction(response));
+        var response = await _httpClient.GetFromJsonAsync<KanBanObject>("data.json");
+        if (response != null)
+        {
+            var boards = response.boards;
+            dispatcher.Dispatch(new LoadKanbanSuccessAction(boards));
+        }
     }
 }

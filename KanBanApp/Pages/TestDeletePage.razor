@@ -1,9 +1,7 @@
 ﻿@page "/board/{name}"
 @inherits FluxorComponent
-@inject IKanbanService KanbanService
-@inject IState<KanbanState> KanBanState
 
-@foreach (var board in KanbanService.GetBoardDetails(Name)!)
+@*@foreach (var board in )
 {
     <p>@board.name</p>
     @if (board.columns != null)
@@ -33,9 +31,14 @@
         }
     }
 }
-<button @onclick="() => KanbanService.Delete(Name)">delete</button>
+<button @onclick="() => ">delete</button>*@
 
 @code {
     [Parameter]
     public string Name { get; set; } = "";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
 }

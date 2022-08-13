@@ -1,29 +1,65 @@
-﻿@using Microsoft.AspNetCore.Components
-@using KanBanApp.Store
-@using KanBanApp.Models
+﻿@using Task = KanBanApp.Models.Task
 @inherits FluxorComponent
 @inject StateFacade Facade
 
-<EditForm Model="Board" OnSubmit="HandleValidSubmit">
+<EditForm Model="Board" OnSubmit="HandleSubmit">
     <DataAnnotationsValidator />
     <h2>Add New Board</h2>
     <div class="input">
-        <label>Name</label>
+        <label>Board Name</label>
         <input type="text" @bind-value="Board.name" />
+    </div>
+
+    <div class="input">
+        <label>Board Columns</label>
+        @if (Board.columns != null)
+        {
+            foreach (var column in Board.columns)
+            {
+                <input type="text" @bind-value="column.name" />
+            }
+        }
+        <button @onclick="AddNewColumn">Add New Column</button>
     </div>
     <button type="submit">create</button>
 </EditForm>
 
 @code {
-    private Board Board { get; set; } = new();
+    private Board? Board { get; set; }
 
     protected override void OnInitialized()
     {
+        Board = new Board
+        {
+            name = "",
+            columns = new List<Column>
+            {
+                new()
+                {
+                    name = "TODO",
+                    tasks = new List<Task>()
+                },
+                new()
+                {
+                    name = "DOING",
+                    tasks = new List<Task>()
+                }
+            }
+        };
+
         base.OnInitialized();
     }
 
-    private void HandleValidSubmit()
+    private void HandleSubmit()
     {
+        Facade.CreateBoard(Board);
     }
 
+    private void AddNewColumn()
+    {
+        Board.columns.Add(new Column
+            {
+                name = ""
+            });
+    }
 }

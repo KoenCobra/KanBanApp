@@ -1,8 +1,6 @@
 using System.Reflection;
 using Fluxor;
 using KanBanApp;
-using KanBanApp.Services;
-using KanBanApp.Services.Abstractions;
 using KanBanApp.Store;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -18,7 +16,6 @@ builder.Services.AddFluxor(options =>
     options.UseReduxDevTools();
 });
 
-builder.Services.AddScoped<IKanbanService, KanbanService>();
 builder.Services.AddScoped<StateFacade>();
 
 await builder.Build().RunAsync();

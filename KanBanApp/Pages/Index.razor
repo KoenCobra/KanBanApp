@@ -1,33 +1,42 @@
 ﻿@page "/"
 @inherits FluxorComponent
+@inject IState<KanbanState> State
 @inject StateFacade Facade
-@inject IState<KanbanState> KanBanState
 
-
-<CreateBoardComponent />
-
-@if (KanBanState.Value.Boards is not null)
+@if (State.Value.Boards is not null)
 {
-    @if (KanBanState.Value.Boards.boards != null)
+    @foreach (var board in State.Value.Boards)
     {
-        foreach (var item in KanBanState.Value.Boards.boards)
-        {
-            <a href="@($"board/{item.name}")">
-                <p>@item.name</p>
-            </a>
-        }
+        <a href="@($"board/{board.name}")">
+            <p>@board.name</p>
+        </a>
+        <button @onclick="() => Facade.DeleteBoard(board.name)">delete</button>
     }
+}
+
+
+<button @onclick="CreateNewBoard">Create New Board</button>
+
+@if (_isAddNewBoardShowing)
+{
+    <CreateBoardComponent />
 }
 
 @code
 {
+    private bool _isAddNewBoardShowing;
+
     protected override void OnInitialized()
     {
-        if (KanBanState.Value.Boards is null)
+        @if (State.Value.Boards is null)
         {
             Facade.LoadKanBan();
         }
-
         base.OnInitialized();
+    }
+
+    private void CreateNewBoard()
+    {
+        _isAddNewBoardShowing = true;
     }
 }

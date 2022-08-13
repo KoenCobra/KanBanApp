@@ -4,10 +4,10 @@ namespace KanBanApp.Store.Actions.Load;
 
 public class LoadKanbanSuccessAction
 {
-    public LoadKanbanSuccessAction(KanBanObject? boards)
+    public LoadKanbanSuccessAction(List<Board>? boards)
     {
         Boards = boards;
     }
 
-    public KanBanObject? Boards { get; }
+    public List<Board>? Boards { get; }
 }

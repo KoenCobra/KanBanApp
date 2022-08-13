@@ -4,10 +4,10 @@ namespace KanBanApp.Store;
 
 public class KanbanState
 {
-    public KanbanState(KanBanObject? boards)
+    public KanbanState(List<Board>? boards)
     {
         Boards = boards;
     }
 
-    public KanBanObject? Boards { get; }
+    public List<Board>? Boards { get; }
 }
