@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace KanBanApp.Models;
+﻿namespace KanBanApp.Models;
 
 public class Board
 {
-    [Required(AllowEmptyStrings = false, ErrorMessage = "Your board must have a title")]
+    //[Required(AllowEmptyStrings = false, ErrorMessage = "Your board must have a title")]
     public string? name { get; set; }
 
     public List<Column>? columns { get; set; }

@@ -1,0 +1,26 @@
+﻿@using Task = KanBanApp.Models.Task
+@inherits FluxorComponent
+@inject IState<KanbanState> State
+
+<div class="task-details">
+    <div class="header">
+    <h3>TaskDetailsComponent</h3>
+        <button @onclick="ShowEditOptions" class="edit-task-btn">
+            <img src="assets/icon-vertical-ellipsis.svg" alt="" />
+        </button>
+    </div>
+  <p class="number-of-subtasks">
+        @(State.Value.Board.columns.SelectMany(list => list.tasks).Distinct().Count());
+      of
+        @*@Task.subtasks.Count*@
+        subtasks
+    </p>
+</div>
+
+
+@code {
+    private void ShowEditOptions()
+    {
+        throw new NotImplementedException();
+    }
+}

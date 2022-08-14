@@ -2,46 +2,65 @@
 @inject IState<KanbanState> State
 @inject StateFacade Facade
 
-<div class="board-details">
-    @if (State.Value.Board is not null)
-    {
-        <p>@State.Value.Board.name</p>
-        @if (State.Value.Board.columns != null)
-        {
-            foreach (var column in State.Value.Board.columns)
+@if (State.Value.Board is not null)
+{
+    <div class="board-details">
+        <div class="board-details-header">
+            <p class="board-name">@State.Value.Board.name</p>
+            <button class="add-task-btn">+ Add New Task</button>
+            <button class="edit-delete-btn">
+                <img src="assets/icon-vertical-ellipsis.svg" alt="" />
+            </button>
+        </div>
+        <div class="columns">
+            @if (State.Value.Board.columns != null)
             {
-                @column.name
-
-                @if (column.tasks != null)
+                foreach (var column in State.Value.Board.columns)
                 {
-                    foreach (var task in column.tasks)
-                    {
-                        <p>@task.description</p>
-                        <p>@task.title</p>
-                        <p>@task.status</p>
+                    <div class="column">
+                        <p class="column-name">
+                            @column.name
+                        </p>
 
-                        @if (task.subtasks != null)
-                        {
-                            foreach (var subTask in task.subtasks)
+                        <div class="tasks">
+                            @if (column.tasks != null)
                             {
-                                <p>@subTask.title</p>
-                                <p>@subTask.isCompleted</p>
+                                foreach (var task in column.tasks)
+                                {
+                                    <div @onclick="ShowTaskDetails" class="task">
+                                        <p>@task.title</p>
+                                        <p class="number-of-subtasks">
+                                            @task.subtasks.Count(s => s.isCompleted)
+                                            of
+                                            @task.subtasks.Count
+                                            subtasks
+                                        </p>
+                                    </div>
+
+                                    @if (task.subtasks != null)
+                                    {
+                                        foreach (var subTask in task.subtasks)
+                                        {
+                                            <p>@subTask.title</p>
+                                        }
+                                    }
+                                }
                             }
-                        }
-                    }
+                        </div>
+                    </div>
                 }
             }
-        }
+        </div>
         <button @onclick="() => Facade.DeleteBoard(State.Value.Board.name)">delete</button>
         <button @onclick="UpdateBoard">Update</button>
-    }
+    </div>
+}
 
 
-    @if (_isUpdateShowing)
-    {
-        <UpdateBoardComponent OnEdit="CloseUpdate" />
-    }
-</div>
+@if (_isUpdateShowing)
+{
+    <UpdateBoardComponent OnEdit="CloseUpdate" />
+}
 
 
 @code {
@@ -55,6 +74,11 @@
     private void CloseUpdate()
     {
         _isUpdateShowing = false;
+    }
+
+    private void ShowTaskDetails()
+    {
+        throw new NotImplementedException();
     }
 
 }

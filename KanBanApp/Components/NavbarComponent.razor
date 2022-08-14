@@ -1,4 +1,5 @@
 ﻿@using System.Security.Cryptography
+@using Task = System.Threading.Tasks.Task
 @inherits FluxorComponent
 @inject IState<KanbanState> State
 @inject StateFacade Facade
@@ -30,12 +31,14 @@
         <input type="checkbox" />
         <img src="assets/icon-dark-theme.svg" alt="" />
     </div>
-    
+
     <button class="navbar-toggler">
         <div class="toggle-icon"></div>
         <p>Hide Sidebar</p>
     </button>
 </div>
+
+
 
 @if (_isAddNewBoardShowing)
 {
@@ -50,6 +53,7 @@
         if (State.Value.Boards is null)
         {
             Facade.LoadKanBan();
+
         }
 
         base.OnInitialized();
