@@ -1,17 +1,40 @@
-﻿@inherits FluxorComponent
+﻿@using System.Security.Cryptography
+@inherits FluxorComponent
 @inject IState<KanbanState> State
 @inject StateFacade Facade
 
 <div class="navbar">
-    @if (State.Value.Boards is not null)
-    {
-        @foreach (var board in State.Value.Boards)
-        {
-                <p @onclick="() => Facade.SetCurrentBoard(board.name)">@board.name</p>
-        }
-    }
+    <div class="logo">
+        <div class="logo-container"></div>
+    </div>
+    <div class="boards">
 
-    <button @onclick="CreateNewBoard">Create New Board</button>
+        @if (State.Value.Boards is not null)
+        {
+            <h5>ALL BOARDS <span>(@State.Value.Boards.Count)</span></h5>
+            @foreach (var board in State.Value.Boards)
+            {
+                <p class="board-name" @onclick="() => Facade.SetCurrentBoard(board.name)">
+                    <img src="assets/icon-board.svg" alt="" />
+                    @board.name
+                </p>
+            }
+            <button class="create-board-btn" @onclick="CreateNewBoard">
+                <img src="assets/icon-board.svg" alt="" />
+                + Create New Board
+            </button>
+        }
+    </div>
+    <div class="theme-section">
+        <img src="assets/icon-light-theme.svg" alt="" />
+        <input type="checkbox" />
+        <img src="assets/icon-dark-theme.svg" alt="" />
+    </div>
+    
+    <button class="navbar-toggler">
+        <div class="toggle-icon"></div>
+        <p>Hide Sidebar</p>
+    </button>
 </div>
 
 @if (_isAddNewBoardShowing)

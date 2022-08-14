@@ -32,10 +32,10 @@
                 }
             }
         }
-    <button @onclick="() => Facade.DeleteBoard(State.Value.Board.name)">delete</button>
+        <button @onclick="() => Facade.DeleteBoard(State.Value.Board.name)">delete</button>
+        <button @onclick="UpdateBoard">Update</button>
     }
 
-    <button @onclick="UpdateBoard">Update</button>
 
     @if (_isUpdateShowing)
     {
