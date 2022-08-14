@@ -2,14 +2,13 @@
 @inject IState<KanbanState> State
 @inject StateFacade Facade
 
-@if (State.Value.Boards is not null)
-{
-    @foreach (var board in State.Value.Boards.Where(b => b.name == Board.name))
+<div class="board-details">
+    @if (State.Value.Board is not null)
     {
-        <p>@board.name</p>
-        @if (board.columns != null)
+        <p>@State.Value.Board.name</p>
+        @if (State.Value.Board.columns != null)
         {
-            foreach (var column in board.columns)
+            foreach (var column in State.Value.Board.columns)
             {
                 @column.name
 
@@ -33,22 +32,19 @@
                 }
             }
         }
+    <button @onclick="() => Facade.DeleteBoard(State.Value.Board.name)">delete</button>
     }
-    <button @onclick="() => Facade.DeleteBoard(Board.name)">delete</button>
 
     <button @onclick="UpdateBoard">Update</button>
 
     @if (_isUpdateShowing)
     {
-        <UpdateBoardComponent Board="Board" OnEdit="CloseUpdate" />
+        <UpdateBoardComponent OnEdit="CloseUpdate" />
     }
-}
+</div>
 
 
 @code {
-    [Parameter]
-    public Board? Board { get; set; }
-
     private bool _isUpdateShowing;
 
     private void UpdateBoard()

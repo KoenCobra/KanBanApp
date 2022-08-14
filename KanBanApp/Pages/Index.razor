@@ -1,48 +1,11 @@
 ﻿@page "/"
-@inherits FluxorComponent
-@inject IState<KanbanState> State
-@inject StateFacade Facade
 
-@if (State.Value.Boards is not null)
-{
-    @foreach (var board in State.Value.Boards)
-    {
-        <p @onclick="() => _board.name = board.name">@board.name</p>
-    }
-}
+<NavbarComponent />
 
-<button @onclick="CreateNewBoard">Create New Board</button>
-
-<BoardComponent Board="@_board" />
-
-@if (_isAddNewBoardShowing)
-{
-    <CreateBoardComponent OnCreate="CloseCreateComponent" />
-}
+<BoardDetailsComponent/>
 
 @code
 {
-    private bool _isAddNewBoardShowing;
-    private Board? _board = new();
 
-    protected override void OnInitialized()
-    {
-        if (State.Value.Boards is null)
-        {
-            Facade.LoadKanBan();
-        }
-
-        base.OnInitialized();
-    }
-
-    private void CreateNewBoard()
-    {
-        _isAddNewBoardShowing = true;
-    }
-
-    private void CloseCreateComponent()
-    {
-        _isAddNewBoardShowing = false;
-    }
 }
 

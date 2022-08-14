@@ -2,19 +2,19 @@
 @inject StateFacade Facade
 @inject IState<KanbanState> State
 
-<EditForm Model="Board">
+<EditForm Model="State.Value.Board">
     <DataAnnotationsValidator />
     <h2>Edit Board</h2>
     <div class="input">
         <label>Board Name</label>
-        <InputText @bind-Value="Board.name" />
+        <InputText @bind-Value="State.Value.Board.name" />
     </div>
 
     <div class="input">
         <label>Board Columns</label>
-        @if (Board != null && Board.columns != null)
+        @if (State.Value.Board != null && State.Value.Board.columns != null)
         {
-            foreach (var column in Board.columns)
+            foreach (var column in State.Value.Board.columns)
             {
                 <input type="text" @bind-value="column.name" />
             }
@@ -28,20 +28,9 @@
     [Parameter]
     public EventCallback OnEdit { get; set; }
 
-    [Parameter]
-    public Board? Board { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Board = State.Value.Boards.Find(b => b.name == Board.name);
-
-        base.OnInitialized();
-    }
-
-
     private void AddNewColumn()
     {
-        Board.columns.Add(new Column
+        State.Value.Board.columns.Add(new Column
             {
                 name = ""
             });
@@ -49,7 +38,7 @@
 
     private void UpdateBoard()
     {
-        Facade.UpdateBoard(Board.name, Board);
+        Facade.UpdateBoard(State.Value.Board.name, State.Value.Board);
         OnEdit.InvokeAsync();
     }
 }

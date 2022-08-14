@@ -3,6 +3,7 @@ using KanBanApp.Models;
 using KanBanApp.Store.Actions.Create;
 using KanBanApp.Store.Actions.delete;
 using KanBanApp.Store.Actions.Load;
+using KanBanApp.Store.Actions.SetCurrentBoard;
 using KanBanApp.Store.Actions.Update;
 
 namespace KanBanApp.Store;
@@ -19,6 +20,11 @@ public class StateFacade
     public void LoadKanBan()
     {
         _dispatcher.Dispatch(new LoadKanbanAction());
+    }
+
+    public void SetCurrentBoard(string? name)
+    {
+        _dispatcher.Dispatch(new SetCurrentBoardAction(name));
     }
 
     public void CreateBoard(Board? board)

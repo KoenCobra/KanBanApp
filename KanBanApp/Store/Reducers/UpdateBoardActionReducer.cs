@@ -9,7 +9,7 @@ namespace KanBanApp.Store.Reducers
         [ReducerMethod]
         public static KanbanState ReduceUpdateBoardAction(KanbanState state, UpdateBoardAction action)
         {
-            return new KanbanState(state.Boards);
+            return new KanbanState(state.Boards, state.Board);
         }
 
         [ReducerMethod]
@@ -17,7 +17,7 @@ namespace KanBanApp.Store.Reducers
         {
             if (state.Boards is null)
             {
-                return new KanbanState(new List<Board>());
+                return new KanbanState(new List<Board>(), state.Board);
             }
 
             var updatedList = state.Boards
@@ -27,7 +27,7 @@ namespace KanBanApp.Store.Reducers
             updatedList.Add(action.Board);
             updatedList = updatedList.ToList();
 
-            return new KanbanState(updatedList);
+            return new KanbanState(updatedList, state.Board);
         }
     }
 }
