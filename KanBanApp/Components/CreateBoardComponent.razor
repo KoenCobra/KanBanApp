@@ -1,6 +1,7 @@
 ﻿@using Task = KanBanApp.Models.Task
 @inherits FluxorComponent
 @inject StateFacade Facade
+@inject IState<KanbanState> State
 
 <EditForm Model="Board">
     <DataAnnotationsValidator />
@@ -16,13 +17,16 @@
         {
             foreach (var column in Board.columns)
             {
-                <input type="text" @bind-value="column.name" />
+                <div class="board-colums-input">
+                    <InputText type="text" @bind-Value="column.name" />
+                    <img @onclick="() => Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="" />
+                </div>
             }
+            <button @onclick="() => Board.columns.Add(new Column())">Add New Column</button>
         }
     </div>
-<button type="submit" @onclick="CreateBoard">create</button>
+    <button @onclick="CreateBoard">create</button>
 </EditForm>
-<button @onclick="AddNewColumn">Add New Column</button>
 
 @code {
     private Board? Board { get; set; }
@@ -53,17 +57,9 @@
         base.OnInitialized();
     }
 
-    private void AddNewColumn()
-    {
-        Board.columns.Add(new Column
-            {
-                name = ""
-            });
-    }
-
     private void CreateBoard()
     {
-        Facade.CreateBoard(Board);
+        State.Value.Boards.Add(Board);
         OnCreate.InvokeAsync();
     }
 }

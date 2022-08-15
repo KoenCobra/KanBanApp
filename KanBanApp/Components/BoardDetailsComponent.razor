@@ -20,7 +20,7 @@
             {
                 <div class="column">
                     <p class="column-name">
-                        @column.name (@column.tasks!.Count)
+                        @column.name (@column.tasks.Count)
                     </p>
 
                     <div class="tasks">
@@ -48,7 +48,8 @@
 
 @if (_isTaskDetailsShowing)
 {
-    <TaskDetailsComponent OnTaskDelete="() => _isTaskDetailsShowing = false" />
+    <TaskDetailsComponent OnTaskDelete="() => _isTaskDetailsShowing = false"
+                      OnStatusSelect="() => _isTaskDetailsShowing = false" />
 }
 
 @if (_isUpdateShowing)

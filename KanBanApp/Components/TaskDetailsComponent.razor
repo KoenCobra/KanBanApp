@@ -14,13 +14,14 @@
             <button @onclick="DeleteTask" class="edit-delete-btn">Delete Task</button>
         </div>
     </div>
+    <p>@State.Value.Task.description</p>
     <p class="number-of-subtasks">
         Subtasks
         (@State.Value.Task.subtasks!.Count(s => s.isCompleted)
         of
         @State.Value.Task.subtasks!.Count)
     </p>
-    
+
     @if (State.Value.Task != null)
     {
         foreach (var subTask in State.Value.Task.subtasks)
@@ -28,19 +29,29 @@
             <p>@subTask.title</p>
         }
     }
-    
+
     <h3>Current Status</h3>
-    @State.Value.Task!.status
+    <EditForm Model="State.Value.Task">
+        <InputSelect @bind-Value="State.Value.Task.status" >
+            @foreach (var column in State.Value.Board.columns)
+            {
+                <option @onselect="() => State.Value.Task.status = column.name">@column.name</option>
+            }
+        </InputSelect>
+    </EditForm>
 </div>
 
 @if (_isTaskDetailsShowing)
 {
-    <UpdateTaskComponent OnUpdateTask="() => _isTaskDetailsShowing = false"/>
+    <UpdateTaskComponent OnUpdateTask="() => _isTaskDetailsShowing = false" />
 }
 
 @code {
     [Parameter]
     public EventCallback OnTaskDelete { get; set; }
+
+    [Parameter]
+    public EventCallback OnStatusSelect { get; set; }
 
     private bool _isTaskDetailsShowing;
 

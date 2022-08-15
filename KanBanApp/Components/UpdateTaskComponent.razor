@@ -25,15 +25,15 @@
                 </div>
             }
 
-            <button>+ Add New Subtask</button>
+            <button @onclick="() => State.Value.Task.subtasks.Add(new Subtask())">+ Add New Subtask</button>
         </div>
 
         <div class="input">
             <label>Status</label>
             <InputSelect @bind-Value="State.Value.Task!.status">
-                @foreach (var status in State.Value.Board.columns)
+                @foreach (var column in State.Value.Board.columns)
                 {
-                    <option>@status.name</option>
+                    <option @onselect="() => State.Value.Task.status = column.name">@column.name</option>
                 }
             </InputSelect>
         </div>

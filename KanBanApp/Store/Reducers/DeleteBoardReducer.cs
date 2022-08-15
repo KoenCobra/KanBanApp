@@ -1,5 +1,5 @@
 ﻿using Fluxor;
-using KanBanApp.Store.Actions.delete;
+using KanBanApp.Store.Actions.Delete;
 
 namespace KanBanApp.Store.Reducers;
 

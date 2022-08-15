@@ -20,7 +20,7 @@
             }
         }
     </div>
-    <button type="submit" @onclick="UpdateBoard">Save Changes</button>
+    <button @onclick="UpdateBoard">Save Changes</button>
 </EditForm>
 <button @onclick="AddNewColumn">Add New Column</button>
 
@@ -30,7 +30,8 @@
 
     private void AddNewColumn()
     {
-        State.Value.Board.columns.Add(new Column
+        if (State.Value.Board != null)
+            State.Value.Board.columns!.Add(new Column
             {
                 name = ""
             });
@@ -38,7 +39,6 @@
 
     private void UpdateBoard()
     {
-        Facade.UpdateBoard(State.Value.Board.name, State.Value.Board);
         OnEdit.InvokeAsync();
     }
 }

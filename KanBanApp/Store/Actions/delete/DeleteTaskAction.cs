@@ -1,6 +1,6 @@
 ﻿using Task = KanBanApp.Models.Task;
 
-namespace KanBanApp.Store.Actions.delete;
+namespace KanBanApp.Store.Actions.Delete;
 
 public class DeleteTaskAction
 {
