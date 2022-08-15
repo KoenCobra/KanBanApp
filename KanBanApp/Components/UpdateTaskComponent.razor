@@ -1,0 +1,53 @@
+﻿@inherits FluxorComponent
+@inject IState<KanbanState> State
+@inject StateFacade Facade
+
+<div class="edit-task">
+    <EditForm Model="State.Value.Task">
+        <h2>Edit Task</h2>
+        <div class="input">
+            <label>Title</label>
+            <InputText @bind-Value="State.Value.Task!.title" />
+        </div>
+
+        <div class="input">
+            <label>Description</label>
+            <InputTextArea @bind-Value="State.Value.Task!.description" />
+        </div>
+
+        <div class="input">
+            <label>Subtasks</label>
+            @foreach (var subtask in State.Value.Task.subtasks)
+            {
+                <div class="subtask-input">
+                    <InputText @bind-Value="subtask.title" />
+                    <img @onclick="() => State.Value.Task.subtasks.Remove(subtask)" src="assets/icon-cross.svg" alt="" />
+                </div>
+            }
+
+            <button>+ Add New Subtask</button>
+        </div>
+
+        <div class="input">
+            <label>Status</label>
+            <InputSelect @bind-Value="State.Value.Task!.status">
+                @foreach (var status in State.Value.Board.columns)
+                {
+                    <option>@status.name</option>
+                }
+            </InputSelect>
+        </div>
+
+        <button @onclick="UpdateTask">Save Changes</button>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnUpdateTask { get; set; }
+
+    private void UpdateTask()
+    {
+        OnUpdateTask.InvokeAsync();
+    }
+}

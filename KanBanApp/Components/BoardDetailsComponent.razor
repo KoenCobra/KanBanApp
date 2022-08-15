@@ -13,7 +13,7 @@
                 <img src="assets/icon-vertical-ellipsis.svg" alt="" />
             </button>
             <button @onclick="() => Facade.DeleteBoard(State.Value.Board.name)">delete</button>
-            <button @onclick="UpdateBoard">Update</button>
+            <button @onclick="() => _isUpdateShowing = true">Update</button>
         </div>
         <div class="columns">
             @foreach (var column in State.Value.Board.columns!)
@@ -48,12 +48,12 @@
 
 @if (_isTaskDetailsShowing)
 {
-    <TaskDetailsComponent OnTaskDelete="CloseTaskDetails"/>
+    <TaskDetailsComponent OnTaskDelete="() => _isTaskDetailsShowing = false" />
 }
 
 @if (_isUpdateShowing)
 {
-    <UpdateBoardComponent OnEdit="CloseUpdate" />
+    <UpdateBoardComponent OnEdit="() => _isUpdateShowing = false" />
 }
 
 
@@ -66,20 +66,4 @@
         _isTaskDetailsShowing = true;
         Facade.LoadTask(task);
     }
-
-    private void UpdateBoard()
-    {
-        _isUpdateShowing = true;
-    }
-
-    private void CloseUpdate()
-    {
-        _isUpdateShowing = false;
-    }
-
-    private void CloseTaskDetails()
-    {
-        _isTaskDetailsShowing = false;
-    }
-
 }
