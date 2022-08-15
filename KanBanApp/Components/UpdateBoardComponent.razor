@@ -1,4 +1,5 @@
-﻿@inherits FluxorComponent
+﻿@using Task = KanBanApp.Models.Task
+@inherits FluxorComponent
 @inject StateFacade Facade
 @inject IState<KanbanState> State
 
@@ -16,13 +17,16 @@
         {
             foreach (var column in State.Value.Board.columns)
             {
-                <input type="text" @bind-value="column.name" />
+                <div class="board-colums-input">
+                    <InputText type="text" @bind-Value="column.name" />
+                    <img @onclick="() => State.Value.Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="" />
+                </div>
             }
+            <button @onclick="AddNewColumn">Add New Column</button>
         }
     </div>
-    <button @onclick="UpdateBoard">Save Changes</button>
 </EditForm>
-<button @onclick="AddNewColumn">Add New Column</button>
+<button @onclick="UpdateBoard">Save Changes</button>
 
 @code {
     [Parameter]
@@ -30,10 +34,10 @@
 
     private void AddNewColumn()
     {
-        if (State.Value.Board != null)
-            State.Value.Board.columns!.Add(new Column
+        State.Value.Board.columns!.Add(new Column
             {
-                name = ""
+                name = "",
+                tasks = new List<Task>()
             });
     }
 

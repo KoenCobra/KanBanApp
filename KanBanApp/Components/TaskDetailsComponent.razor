@@ -32,12 +32,13 @@
 
     <h3>Current Status</h3>
     <EditForm Model="State.Value.Task">
-        <InputSelect @bind-Value="State.Value.Task.status" >
+        <InputSelect @bind-Value="State.Value.Task.status">
             @foreach (var column in State.Value.Board.columns)
             {
                 <option @onselect="() => State.Value.Task.status = column.name">@column.name</option>
             }
         </InputSelect>
+        <button @onclick="() => OnStatusSelect.InvokeAsync()">Save</button>
     </EditForm>
 </div>
 

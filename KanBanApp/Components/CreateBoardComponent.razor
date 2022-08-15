@@ -22,11 +22,11 @@
                     <img @onclick="() => Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="" />
                 </div>
             }
-            <button @onclick="() => Board.columns.Add(new Column())">Add New Column</button>
+            <button @onclick="AddColumns">Add New Column</button>
         }
     </div>
-    <button @onclick="CreateBoard">create</button>
 </EditForm>
+<button @onclick="CreateBoard">create</button>
 
 @code {
     private Board? Board { get; set; }
@@ -61,5 +61,14 @@
     {
         State.Value.Boards.Add(Board);
         OnCreate.InvokeAsync();
+    }
+
+    private void AddColumns()
+    {
+        Board.columns.Add(new Column
+        {
+            name = "",
+            tasks = new List<Task>()
+        });
     }
 }
