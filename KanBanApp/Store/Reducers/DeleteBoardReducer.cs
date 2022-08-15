@@ -8,17 +8,17 @@ public class DeleteBoardReducer
     [ReducerMethod]
     public static KanbanState ReduceDeleteBoardAction(KanbanState state, DeleteBoardAction action)
     {
-        return new KanbanState(state.Boards, state.Board);
+        return new KanbanState(state.Boards, state.Board, state.Task);
     }
 
     [ReducerMethod]
     public static KanbanState ReduceDeleteBoardSuccessAction(KanbanState state, DeleteBoardSuccessAction action)
     {
-        if (state.Boards is null) return new KanbanState(null, state.Board);
+        if (state.Boards is null) return new KanbanState(null, null, null);
 
         var currentState = state.Boards;
-        currentState.Remove(state.Board);
+        if (state.Board != null) currentState.Remove(state.Board);
 
-        return new KanbanState(currentState, null);
+        return new KanbanState(currentState, null, null);
     }
 }

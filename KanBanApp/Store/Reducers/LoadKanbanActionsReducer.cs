@@ -8,12 +8,12 @@ public static class LoadKanbanActionsReducer
     [ReducerMethod]
     public static KanbanState ReduceLoadBoardAction(KanbanState state, LoadKanbanAction _)
     {
-        return new KanbanState(null, state.Board);
+        return new KanbanState(null, null, null);
     }
 
     [ReducerMethod]
     public static KanbanState ReduceLoadBoardSuccessAction(KanbanState state, LoadKanbanSuccessAction action)
     {
-        return new KanbanState(action.Boards, state.Board);
+        return new KanbanState(action.Boards, state.Board, state.Task);
     }
 }

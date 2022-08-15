@@ -15,7 +15,7 @@
             <h5>ALL BOARDS <span>(@State.Value.Boards.Count)</span></h5>
             @foreach (var board in State.Value.Boards)
             {
-                <p class="board-name" @onclick="() => Facade.SetCurrentBoard(board.name)">
+                <p class="board-name" @onclick="() => SetCurrentBoard(board.name)">
                     <img src="assets/icon-board.svg" alt="" />
                     @board.name
                 </p>
@@ -37,8 +37,6 @@
         <p>Hide Sidebar</p>
     </button>
 </div>
-
-
 
 @if (_isAddNewBoardShowing)
 {
@@ -67,5 +65,10 @@
     private void CloseCreateComponent()
     {
         _isAddNewBoardShowing = false;
+    }
+
+    private void SetCurrentBoard(string? name)
+    {
+        Facade.SetCurrentBoard(name);
     }
 }

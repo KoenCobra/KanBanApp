@@ -8,16 +8,16 @@ public class SetCurrentBoardReducer
     [ReducerMethod]
     public static KanbanState ReduceSetCurrentBoardAction(KanbanState state, SetCurrentBoardAction action)
     {
-        return new KanbanState(state.Boards, state.Board);
+        return new KanbanState(state.Boards, state.Board, state.Task);
     }
 
     [ReducerMethod]
     public static KanbanState ReduceSetCurrentBoardSuccessAction(KanbanState state, SetCurrentBoardSuccessAction action)
     {
-        if (state.Boards is null) return new KanbanState(null, null);
+        if (state.Boards is null) return new KanbanState(null, null, null);
 
         var setCurrentBoard = state.Boards.Find(b => b.name == action.Name);
 
-        return new KanbanState(state.Boards, setCurrentBoard);
+        return new KanbanState(state.Boards, setCurrentBoard, state.Task);
     }
 }

@@ -1,20 +1,32 @@
 ﻿@using Task = KanBanApp.Models.Task
 @inherits FluxorComponent
 @inject IState<KanbanState> State
+@inject StateFacade Facade
 
 <div class="task-details">
     <div class="header">
-    <h3>TaskDetailsComponent</h3>
+        <h3>@State.Value.Task!.title</h3>
         <button @onclick="ShowEditOptions" class="edit-task-btn">
             <img src="assets/icon-vertical-ellipsis.svg" alt="" />
         </button>
     </div>
-  <p class="number-of-subtasks">
-        @(State.Value.Board.columns.SelectMany(list => list.tasks).Distinct().Count());
-      of
-        @*@Task.subtasks.Count*@
-        subtasks
+    <p class="number-of-subtasks">
+        Subtasks
+        (@State.Value.Task.subtasks!.Count(s => s.isCompleted)
+        of
+        @State.Value.Task.subtasks!.Count)
     </p>
+    
+    @if (State.Value.Task != null)
+    {
+        foreach (var subTask in State.Value.Task.subtasks)
+        {
+            <p>@subTask.title</p>
+        }
+    }
+    
+    <h3>Current Status</h3>
+    @State.Value.Task!.status
 </div>
 
 
