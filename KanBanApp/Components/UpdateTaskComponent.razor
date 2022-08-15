@@ -33,7 +33,7 @@
             <InputSelect @bind-Value="State.Value.Task!.status">
                 @foreach (var column in State.Value.Board.columns)
                 {
-                    <option @onselect="() => State.Value.Task.status = column.name">@column.name</option>
+                    <option>@column.name</option>
                 }
             </InputSelect>
         </div>

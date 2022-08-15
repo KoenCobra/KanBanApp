@@ -8,7 +8,7 @@
     <div class="board-details">
         <div class="board-details-header">
             <p class="board-name">@State.Value.Board.name</p>
-            <button class="add-task-btn">+ Add New Task</button>
+            <button @onclick="() => _isAddTaskShowing = true" class="add-task-btn">+ Add New Task</button>
             <button class="edit-delete-btn">
                 <img src="assets/icon-vertical-ellipsis.svg" alt="" />
             </button>
@@ -57,14 +57,21 @@
     <UpdateBoardComponent OnEdit="() => _isUpdateShowing = false" />
 }
 
+@if (_isAddTaskShowing)
+{
+    <AddTaskComponent OnAddTask="() => _isAddTaskShowing = false"/>
+}
+
 
 @code {
     private bool _isUpdateShowing;
     private bool _isTaskDetailsShowing;
+    private bool _isAddTaskShowing;
 
     private void ShowTaskDetails(Task task)
     {
         _isTaskDetailsShowing = true;
         Facade.LoadTask(task);
     }
+
 }

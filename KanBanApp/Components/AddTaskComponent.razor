@@ -1,0 +1,103 @@
+﻿@using Task = KanBanApp.Models.Task
+@inherits FluxorComponent
+@inject IState<KanbanState> State
+
+<div class="add-task">
+    <EditForm Model="Task">
+
+        <h3>AddTaskComponent</h3>
+        <div class="input">
+            <label>Title</label>
+            <InputText @bind-Value="Task.title" />
+        </div>
+
+        <div class="input">
+            <label>Description</label>
+            <InputTextArea @bind-Value="Task.description" />
+        </div>
+
+        <div class="input">
+            <label>Subtasks</label>
+            @foreach (var subtask in Task.subtasks)
+            {
+                <div class="subtask-input">
+                    <InputText @bind-Value="subtask.title" />
+                    <img @onclick="() => Task.subtasks.Remove(subtask)" src="assets/icon-cross.svg" alt="remove" />
+                </div>
+            }
+
+            <button @onclick="AddSubTask">+ Add New Subtask</button>
+        </div>
+
+        <div class="input">
+            <label>Status</label>
+            <InputSelect @bind-Value="Task.status">
+                @foreach (var column in State.Value.Board.columns)
+                {
+                    <option >@column.name</option>
+                }
+            </InputSelect>
+        </div>
+    </EditForm>
+
+    <button @onclick="AddTask">+ Add New Task</button>
+</div>
+
+@code {
+    [Parameter]
+    public Task? Task { get; set; }
+
+    [Parameter]
+    public EventCallback OnAddTask { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Task = new Task
+            {
+                title = "",
+                description = "",
+                status = "",
+                subtasks = new()
+            {
+                new Subtask
+                {
+                    title = "",
+                    isCompleted = false
+                },
+                new Subtask
+                {
+                    title = "",
+                    isCompleted = false
+                }
+            }
+            };
+        base.OnInitialized();
+    }
+
+    private void AddSubTask()
+    {
+        Task.subtasks.Add(new Subtask
+            {
+                title = "",
+                isCompleted = false
+            });
+    }
+
+    private void AddTask()
+    {
+        foreach (var column in State.Value.Board.columns)
+        {
+            if (column.name == Task.status)
+            {
+                column.tasks.Add(new Task()
+                    {
+                        subtasks = Task.subtasks,
+                        status = Task.status,
+                        description = Task.description,
+                        title = Task.title
+                    });
+            }
+        }
+        OnAddTask.InvokeAsync();
+    }
+}
