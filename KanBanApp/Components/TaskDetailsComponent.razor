@@ -9,6 +9,10 @@
         <button @onclick="ShowEditOptions" class="edit-task-btn">
             <img src="assets/icon-vertical-ellipsis.svg" alt="" />
         </button>
+        <div class="edit-task-option">
+            <button class="edit-task-btn">Edit Task</button>
+            <button @onclick="DeleteTask" class="edit-delete-btn">Delete Task</button>
+        </div>
     </div>
     <p class="number-of-subtasks">
         Subtasks
@@ -31,8 +35,17 @@
 
 
 @code {
+    [Parameter]
+    public EventCallback OnTaskDelete { get; set; }
+
     private void ShowEditOptions()
     {
         throw new NotImplementedException();
+    }
+
+    private void DeleteTask()
+    {
+        Facade.DeleteTask(State.Value.Task);
+        OnTaskDelete.InvokeAsync();
     }
 }

@@ -13,6 +13,6 @@ public class KanbanState
     }
 
     public List<Board>? Boards { get; }
-    public Task? Task { get; }
+    public Task? Task { get; set; }
     public Board? Board { get; }
 }

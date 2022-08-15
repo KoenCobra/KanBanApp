@@ -47,4 +47,9 @@ public class StateFacade
     {
         _dispatcher.Dispatch(new LoadTaskAction(task));
     }
+
+    public void DeleteTask(Task? task)
+    {
+        _dispatcher.Dispatch(new DeleteTaskAction(task));
+    }
 }
