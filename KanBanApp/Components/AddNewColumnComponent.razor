@@ -1,0 +1,28 @@
+﻿@using Task = KanBanApp.Models.Task
+@inherits FluxorComponent
+@inject IState<KanbanState> State
+
+<h3>Add NewColumn</h3>
+<div class="input">
+    <label>Name</label>
+    <input type="text" @bind-value="@_columnName"/>
+</div>
+
+<button @onclick="AddColumn">+ Add New Column</button>
+@code {
+    [Parameter]
+    public EventCallback OnAddColumn { get; set; }
+
+    private string? _columnName;
+
+    private void AddColumn()
+    {
+        State.Value.Board.columns.Add(new Column
+        {
+            name = _columnName,
+            tasks = new List<Task>()
+        });
+
+        OnAddColumn.InvokeAsync();
+    }
+}

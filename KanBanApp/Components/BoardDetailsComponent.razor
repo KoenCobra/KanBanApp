@@ -40,7 +40,7 @@
                     </div>
                 </div>
             }
-
+            <button @onclick="() => _isAddColumnShowing = true">+</button>
         </div>
     </div>
 }
@@ -61,16 +61,30 @@
     <AddTaskComponent OnAddTask="() => _isAddTaskShowing = false" />
 }
 
+@if (_isAddColumnShowing)
+{
+    <AddNewColumnComponent OnAddColumn="() => _isAddColumnShowing = false" />
+}
 
 
 @code {
     private bool _isUpdateShowing;
     private bool _isTaskDetailsShowing;
     private bool _isAddTaskShowing;
+    private bool _isAddColumnShowing;
 
     private void ShowTaskDetails(Task task)
     {
         _isTaskDetailsShowing = true;
         Facade.LoadTask(task);
+    }
+
+    private void AddNewColumn()
+    {
+        State.Value.Board.columns!.Add(new Column
+        {
+            name = "",
+            tasks = new List<Task>()
+        });
     }
 }

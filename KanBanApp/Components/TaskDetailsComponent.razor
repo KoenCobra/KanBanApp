@@ -26,7 +26,11 @@
     {
         foreach (var subTask in State.Value.Task.subtasks)
         {
+            <EditForm Model="subTask">
+
+            <InputCheckbox @bind-Value="subTask.isCompleted"/>
             <p>@subTask.title</p>
+            </EditForm>
         }
     }
 

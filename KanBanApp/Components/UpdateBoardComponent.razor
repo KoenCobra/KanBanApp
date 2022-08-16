@@ -43,6 +43,7 @@
 
     private void UpdateBoard()
     {
+        Facade.UpdateBoard(State.Value.Board);
         OnEdit.InvokeAsync();
     }
 }
