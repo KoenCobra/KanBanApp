@@ -38,6 +38,7 @@
                 }
             </InputSelect>
         </div>
+        
     </EditForm>
 
     <button @onclick="AddTask">+ Add New Task</button>
@@ -89,13 +90,7 @@
         {
             if (column.name == Task.status)
             {
-                column.tasks.Add(new Task()
-                    {
-                        subtasks = Task.subtasks,
-                        status = Task.status,
-                        description = Task.description,
-                        title = Task.title
-                    });
+                column.tasks.Add(Task);
             }
         }
         OnAddTask.InvokeAsync();

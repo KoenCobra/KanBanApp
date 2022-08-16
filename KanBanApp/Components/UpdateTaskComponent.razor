@@ -29,8 +29,10 @@
         </div>
 
         <div class="input">
-            <label>Status</label>
-            <InputSelect @bind-Value="State.Value.Task!.status">
+
+            <InputSelect ValueExpression="@(()=>State.Value.Task.status)"
+                         Value="@State.Value.Task.status"
+                         ValueChanged="@((string value) => OnValueChanged(value ))">
                 @foreach (var column in State.Value.Board.columns)
                 {
                     <option>@column.name</option>
@@ -38,7 +40,6 @@
             </InputSelect>
         </div>
 
-        <button @onclick="UpdateTask">Save Changes</button>
     </EditForm>
 </div>
 
@@ -46,8 +47,9 @@
     [Parameter]
     public EventCallback OnUpdateTask { get; set; }
 
-    private void UpdateTask()
+    private void OnValueChanged(string value)
     {
+        State.Value.Task.status = value;
         OnUpdateTask.InvokeAsync();
     }
 }

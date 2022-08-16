@@ -43,7 +43,6 @@
 
         </div>
     </div>
-
 }
 
 @if (_isTaskDetailsShowing)
@@ -59,8 +58,9 @@
 
 @if (_isAddTaskShowing)
 {
-    <AddTaskComponent OnAddTask="() => _isAddTaskShowing = false"/>
+    <AddTaskComponent OnAddTask="() => _isAddTaskShowing = false" />
 }
+
 
 
 @code {
@@ -73,5 +73,4 @@
         _isTaskDetailsShowing = true;
         Facade.LoadTask(task);
     }
-
 }

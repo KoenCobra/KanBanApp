@@ -32,13 +32,15 @@
 
     <h3>Current Status</h3>
     <EditForm Model="State.Value.Task">
-        <InputSelect @bind-Value="State.Value.Task.status">
+
+        <InputSelect ValueExpression="@(()=>State.Value.Task.status)"
+                     Value="@State.Value.Task.status"
+                     ValueChanged="@((string value) => OnValueChanged(value ))">
             @foreach (var column in State.Value.Board.columns)
             {
-                <option @onselect="() => State.Value.Task.status = column.name">@column.name</option>
+                <option>@column.name</option>
             }
         </InputSelect>
-        <button @onclick="() => OnStatusSelect.InvokeAsync()">Save</button>
     </EditForm>
 </div>
 
@@ -65,6 +67,12 @@
     {
         Facade.DeleteTask(State.Value.Task);
         OnTaskDelete.InvokeAsync();
+    }
+
+    private void OnValueChanged(string value)
+    {
+        State.Value.Task.status = value;
+        OnStatusSelect.InvokeAsync();
     }
 
 }
