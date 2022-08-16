@@ -71,7 +71,7 @@
 
     private void OnValueChanged(string value)
     {
-        State.Value.Task.status = value;
+        Facade.UpdateTaskStatus(value);
         OnStatusSelect.InvokeAsync();
     }
 

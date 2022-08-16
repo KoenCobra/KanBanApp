@@ -2,6 +2,7 @@
 using KanBanApp.Store.Actions.Delete;
 using KanBanApp.Store.Actions.Load;
 using KanBanApp.Store.Actions.SetCurrentBoard;
+using KanBanApp.Store.Actions.SetTaskStatus;
 using Task = KanBanApp.Models.Task;
 
 namespace KanBanApp.Store;
@@ -38,5 +39,10 @@ public class StateFacade
     public void DeleteTask(Task? task)
     {
         _dispatcher.Dispatch(new DeleteTaskAction(task));
+    }
+
+    public void UpdateTaskStatus(string status)
+    {
+        _dispatcher.Dispatch(new SetTaskStatusAction(status));
     }
 }
