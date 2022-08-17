@@ -12,7 +12,7 @@
             <button class="edit-delete-btn">
                 <img src="assets/icon-vertical-ellipsis.svg" alt="" />
             </button>
-            <button @onclick="() => Facade.DeleteBoard(State.Value.Board.name)">delete</button>
+            <button @onclick="DeleteBoard">delete</button>
             <button @onclick="() => _isUpdateShowing = true">Update</button>
         </div>
         <div class="columns">
@@ -86,5 +86,11 @@
             name = "",
             tasks = new List<Task>()
         });
+    }
+
+    private void DeleteBoard()
+    {
+        Facade.DeleteBoard(State.Value.Board.name);
+        Facade.SetCurrentBoard(State.Value.Boards.FirstOrDefault().name);
     }
 }
