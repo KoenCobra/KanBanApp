@@ -27,16 +27,14 @@
         foreach (var subTask in State.Value.Task.subtasks)
         {
             <EditForm Model="subTask">
-
-            <InputCheckbox @bind-Value="subTask.isCompleted"/>
-            <p>@subTask.title</p>
+                <InputCheckbox @bind-Value="subTask.isCompleted" />
+                <p>@subTask.title</p>
             </EditForm>
         }
     }
 
     <h3>Current Status</h3>
     <EditForm Model="State.Value.Task">
-
         <InputSelect ValueExpression="@(()=>State.Value.Task.status)"
                      Value="@State.Value.Task.status"
                      ValueChanged="@((string value) => OnValueChanged(value ))">

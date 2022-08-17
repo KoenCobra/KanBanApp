@@ -14,6 +14,8 @@ public static class LoadKanbanActionsReducer
     [ReducerMethod]
     public static KanbanState ReduceLoadBoardSuccessAction(KanbanState state, LoadKanbanSuccessAction action)
     {
-        return new KanbanState(action.Boards, state.Board, state.Task);
+        var defaultBoard = action.Boards.FirstOrDefault();
+
+        return new KanbanState(action.Boards, defaultBoard, state.Task);
     }
 }
