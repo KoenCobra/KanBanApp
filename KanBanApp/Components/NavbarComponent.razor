@@ -4,7 +4,7 @@
 @inject IState<KanbanState> State
 @inject StateFacade Facade
 
-<div class="navbar">
+<div class="navbar @(_isSideBarShowing ? "hide" : "")">
     <div class="logo">
         <div class="logo-container"></div>
     </div>
@@ -12,29 +12,36 @@
 
         @if (State.Value.Boards is not null)
         {
-            <h5>ALL BOARDS <span>(@State.Value.Boards.Count)</span></h5>
-            @foreach (var board in State.Value.Boards)
-            {
-                <p class="board-name" @onclick="() => Facade.SetCurrentBoard(board.name)">
-                    <img src="assets/icon-board.svg" alt="" />
-                    @board.name
-                </p>
-            }
-            <button class="create-board-btn" @onclick="() => _isAddNewBoardShowing = true">
-                <img src="assets/icon-board.svg" alt="" />
+            <h5 class="all-boards">ALL BOARDS <span>(@State.Value.Boards.Count)</span></h5>
+            <ul class="boards-list">
+                @foreach (var board in State.Value.Boards)
+                {
+                    <li class="board-name" @onclick="() => Facade.SetCurrentBoard(board.name)">
+                        <img src="assets/icon-board.svg" alt="" />
+                        @board.name
+                    </li>
+                }
+            </ul>
+            <button class="button create-board-btn " @onclick="() => _isAddNewBoardShowing = true">
+                <img class="add-board-icon" src="assets/icon-board.svg" alt="board-icon" />
                 + Create New Board
             </button>
         }
     </div>
     <div class="theme-section">
         <img src="assets/icon-light-theme.svg" alt="" />
-        <input type="checkbox" />
+        <label class="toggler-wrapper style-1">
+            <input type="checkbox" >
+            <div class="toggler-slider">
+                <div class="toggler-knob"></div>
+            </div>
+        </label>
         <img src="assets/icon-dark-theme.svg" alt="" />
     </div>
 
-    <button class="navbar-toggler">
+    <button @onclick="() => _isSideBarShowing = !_isSideBarShowing" class="button navbar-toggler">
         <div class="toggle-icon"></div>
-        <p>Hide Sidebar</p>
+        <span>Hide Sidebar</span>
     </button>
 </div>
 
@@ -45,6 +52,7 @@
 
 @code {
     private bool _isAddNewBoardShowing;
+    private bool _isSideBarShowing;
 
     protected override void OnInitialized()
     {
@@ -56,4 +64,5 @@
 
         base.OnInitialized();
     }
+
 }
