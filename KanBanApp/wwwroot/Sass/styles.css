@@ -180,6 +180,7 @@ main {
   color: var(--medium-grey);
   font-weight: 700;
   font-size: 0.93rem;
+  cursor: pointer;
 }
 .navbar .create-board-btn {
   display: flex;
@@ -188,6 +189,7 @@ main {
   padding-top: 1rem;
   gap: 1rem;
   color: #635FC7;
+  cursor: pointer;
 }
 .navbar .create-board-btn .add-board-icon {
   filter: invert(49%) sepia(10%) saturate(3490%) hue-rotate(203deg) brightness(80%) contrast(93%);
