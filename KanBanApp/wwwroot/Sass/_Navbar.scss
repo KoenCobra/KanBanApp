@@ -72,6 +72,10 @@
             font-size: 0.93rem;
             cursor: pointer;
         }
+
+        .active{
+            background-color: var(--main-purple);
+        }
     }
 
     .create-board-btn {

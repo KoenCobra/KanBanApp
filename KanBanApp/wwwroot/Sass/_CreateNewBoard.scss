@@ -1,0 +1,54 @@
+﻿@import "_Config.scss";
+
+.create-new-board {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    background-color: var(--white);
+    border-radius: 6px;
+    padding: 2rem;
+    width: 30rem;
+
+    .add-board-heading {
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: var(--black);
+        margin-bottom: 1.5rem;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--medium-grey);
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            border: 1px solid rgba(130, 143, 163, 0.25);
+            border-radius: 4px;
+            height: 2.5rem;
+            padding-left: 1rem;
+        }
+
+        ::placeholder {
+            font-weight: 500;
+            font-size: 0.8125rem;
+            color: var(--black);
+            mix-blend-mode: normal;
+            opacity: 0.25;
+        }
+    }
+}
+
+.overlay {
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+}
