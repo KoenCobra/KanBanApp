@@ -6,25 +6,6 @@
 @if (State.Value.Board is not null)
 {
     <div class="board-details">
-        <div class="board-details-header">
-            <p class="board-name">@State.Value.Board.name</p>
-            <button @onclick="() => _isAddTaskShowing = true" class="add-task-btn btn">+ Add New Task</button>
-            <div class="edit-delete-handler ">
-                <button onclick="ToggleDropdown()" class="btn drop-btn">
-                    <img class="drop-btn" src="assets/icon-vertical-ellipsis.svg" alt="ellipis" />
-                </button>
-                <div class="edit-delete-modal">
-                    <button class="btn edit-board-btn" @onclick="() => _isUpdateShowing = true">
-                        <i class="fa-regular fa-pen-to-square crud-icon"></i>
-                        Edit Board
-                    </button>
-                    <button class="btn delete-board-btn" @onclick="DeleteBoard">
-                        <i class="fa-regular fa-trash-can crud-icon"></i>
-                        Delete Board
-                    </button>
-                </div>
-            </div>
-        </div>
         <div class="columns">
             @foreach (var column in State.Value.Board.columns!)
             {
@@ -50,7 +31,7 @@
                     </div>
                 </div>
             }
-            <button @onclick="() => _isAddColumnShowing = true">+</button>
+            <button @onclick="() => _isAddColumnShowing = true">+ New Column</button>
         </div>
     </div>
 }
@@ -61,16 +42,6 @@
                       OnStatusSelect="() => _isTaskDetailsShowing = false" />
 }
 
-@if (_isUpdateShowing)
-{
-    <UpdateBoardComponent OnEdit="() => _isUpdateShowing = false" />
-}
-
-@if (_isAddTaskShowing)
-{
-    <AddTaskComponent OnAddTask="() => _isAddTaskShowing = false" />
-}
-
 @if (_isAddColumnShowing)
 {
     <AddNewColumnComponent OnAddColumn="() => _isAddColumnShowing = false" />
@@ -78,9 +49,7 @@
 
 
 @code {
-    private bool _isUpdateShowing;
     private bool _isTaskDetailsShowing;
-    private bool _isAddTaskShowing;
     private bool _isAddColumnShowing;
     private bool _isCrudShowing;
 
@@ -98,11 +67,4 @@
                 tasks = new List<Task>()
             });
     }
-
-    private void DeleteBoard()
-    {
-        Facade.DeleteBoard(State.Value.Board.name);
-        Facade.SetCurrentBoard(State.Value.Boards.FirstOrDefault().name);
-    }
-
 }

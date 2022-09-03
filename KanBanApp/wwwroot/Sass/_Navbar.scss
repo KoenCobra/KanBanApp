@@ -1,7 +1,7 @@
 ﻿@import "_Config.scss";
 
 .navbar {
-    width: 17.25rem;
+    width: 19.25rem;
     height: 100vh;
     padding-left: 2rem;
     padding-top: 2rem;
@@ -10,7 +10,7 @@
     transition: $transition;
 
     &.hide {
-        margin-left: -17.25rem;
+        margin-left: -19.25rem;
 
         .navbar-toggler {
             position: absolute;
@@ -40,14 +40,6 @@
         }
     }
 
-    .logo {
-        background: var(--logo);
-        background-repeat: no-repeat;
-        height: 1.6rem;
-        width: 9.53rem;
-        padding-bottom: 3.375rem;
-    }
-
     .all-boards {
         color: var(--medium-grey);
         font-weight: 700;
@@ -73,7 +65,7 @@
             cursor: pointer;
         }
 
-        .active{
+        .active {
             background-color: var(--main-purple);
         }
     }

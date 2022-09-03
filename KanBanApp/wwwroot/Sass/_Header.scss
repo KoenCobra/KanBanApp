@@ -1,0 +1,96 @@
+﻿@import "_Config.scss";
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 2rem 0 1.5rem;
+    justify-content: space-between;
+    z-index: 1;
+
+    .logo-board-name {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            background: var(--logo);
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 1.6rem;
+            width: 9.53rem;
+            padding-bottom: 3.375rem;
+        }
+
+        .board-name {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--black);
+            padding-left: 7rem;
+        }
+    }
+
+    .board-details-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 100%;
+        padding-right: 2rem;
+        padding-bottom: 2.125rem;
+
+        .add-task-btn {
+            background: var(--main-purple);
+            border-radius: 24px;
+            color: var(--white);
+            padding: 0.875rem 1.5rem;
+            font-size: 0.9375rem;
+            margin-right: 1.5rem;
+            transition: $transition;
+
+            &:hover {
+                background: var(--hover-main-purple);
+            }
+        }
+
+        .edit-delete-handler {
+            position: relative;
+
+            .edit-delete-modal {
+                display: block;
+                position: absolute;
+                left: -10rem;
+                top: 3.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                box-shadow: $boxShadow;
+                padding: 1rem;
+                border-radius: 8px;
+                transition: $transition;
+                transform: scale(0);
+                transform-origin: top;
+                background-color: var(--body-background);
+
+                .edit-board-btn {
+                    font-weight: 500;
+                    font-size: 0.8rem;
+                    color: var(--medium-grey);
+                }
+
+                .delete-board-btn {
+                    font-weight: 500;
+                    font-size: 0.8rem;
+                    color: #EA5555;
+                }
+
+                .crud-icon {
+                    margin-right: 0.5rem;
+                }
+
+                &.show {
+                    transform: scale(1);
+                    transform-origin: bottom;
+                }
+            }
+        }
+    }
+}

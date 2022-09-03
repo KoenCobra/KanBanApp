@@ -1,10 +1,12 @@
 ﻿@page "/"
 
-<main onclick="CloseDropDown(event)">
-    <NavbarComponent />
-
-    <BoardDetailsComponent />
-</main>
+<div onclick="CloseDropDown(event)">
+    <HeaderComponent />
+    <main>
+        <NavbarComponent />
+        <BoardDetailsComponent />
+    </main>
+</div>
 
 @code
 {

@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
 @keyframes fade-in-fwd {
   0% {
     transform: translate(-50%, -80%);
@@ -70,7 +71,7 @@ body {
   line-height: 1.5;
   font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--body-background);
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 /* A elements that don't have a class get default styles */
@@ -173,7 +174,7 @@ main {
 }
 
 .navbar {
-  width: 17.25rem;
+  width: 19.25rem;
   height: 100vh;
   padding-left: 2rem;
   padding-top: 2rem;
@@ -182,7 +183,7 @@ main {
   transition: all 0.18s ease-out;
 }
 .navbar.hide {
-  margin-left: -17.25rem;
+  margin-left: -19.25rem;
 }
 .navbar.hide .navbar-toggler {
   position: absolute;
@@ -204,13 +205,6 @@ main {
 }
 .navbar.hide .navbar-toggler:hover .toggle-icon {
   filter: none;
-}
-.navbar .logo {
-  background: var(--logo);
-  background-repeat: no-repeat;
-  height: 1.6rem;
-  width: 9.53rem;
-  padding-bottom: 3.375rem;
 }
 .navbar .all-boards {
   color: var(--medium-grey);
@@ -475,22 +469,70 @@ main {
 .board-details {
   width: 100%;
   padding-top: 1.25rem;
-  padding-right: 2rem;
 }
-.board-details .board-details-header {
-  width: 100%;
+.board-details .columns {
+  padding: 1.5rem;
+  padding-top: 0;
+  display: flex;
+  max-width: 85%;
+  overflow-x: auto;
+  gap: 1.5rem;
+}
+.board-details .columns .column {
+  width: 17.5rem;
+}
+@keyframes fade-in-fwd {
+  0% {
+    transform: translate(-50%, -80%);
+  }
+  100% {
+    transform: translateY(-50%, -50%);
+  }
+}
+:root {
+  --body-background: #F4F7FD;
+  --logo: url(../assets/logo-dark.svg);
+  --medium-grey: #828FA3;
+  --main-purple: #635FC7;
+  --hover-main-purple: #A8A4FF;
+  --white: #FFFFFF;
+  --black: #000112;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 2rem 0 1.5rem;
+  justify-content: space-between;
+  z-index: 1;
+}
+.header .logo-board-name {
+  display: flex;
+  align-items: center;
+}
+.header .logo-board-name .logo {
+  background: var(--logo);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1.6rem;
+  width: 9.53rem;
+  padding-bottom: 3.375rem;
+}
+.header .logo-board-name .board-name {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--black);
+  padding-left: 7rem;
+}
+.header .board-details-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 100%;
+  padding-right: 2rem;
+  padding-bottom: 2.125rem;
 }
-.board-details .board-details-header .board-name {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--black);
-  margin-right: auto;
-}
-.board-details .board-details-header .add-task-btn {
+.header .board-details-header .add-task-btn {
   background: var(--main-purple);
   border-radius: 24px;
   color: var(--white);
@@ -499,13 +541,13 @@ main {
   margin-right: 1.5rem;
   transition: all 0.18s ease-out;
 }
-.board-details .board-details-header .add-task-btn:hover {
+.header .board-details-header .add-task-btn:hover {
   background: var(--hover-main-purple);
 }
-.board-details .board-details-header .edit-delete-handler {
+.header .board-details-header .edit-delete-handler {
   position: relative;
 }
-.board-details .board-details-header .edit-delete-handler .edit-delete-modal {
+.header .board-details-header .edit-delete-handler .edit-delete-modal {
   display: block;
   position: absolute;
   left: -10rem;
@@ -520,21 +562,22 @@ main {
   transition: all 0.18s ease-out;
   transform: scale(0);
   transform-origin: top;
+  background-color: var(--body-background);
 }
-.board-details .board-details-header .edit-delete-handler .edit-delete-modal .edit-board-btn {
+.header .board-details-header .edit-delete-handler .edit-delete-modal .edit-board-btn {
   font-weight: 500;
   font-size: 0.8rem;
   color: var(--medium-grey);
 }
-.board-details .board-details-header .edit-delete-handler .edit-delete-modal .delete-board-btn {
+.header .board-details-header .edit-delete-handler .edit-delete-modal .delete-board-btn {
   font-weight: 500;
   font-size: 0.8rem;
   color: #EA5555;
 }
-.board-details .board-details-header .edit-delete-handler .edit-delete-modal .crud-icon {
+.header .board-details-header .edit-delete-handler .edit-delete-modal .crud-icon {
   margin-right: 0.5rem;
 }
-.board-details .board-details-header .edit-delete-handler .edit-delete-modal.show {
+.header .board-details-header .edit-delete-handler .edit-delete-modal.show {
   transform: scale(1);
   transform-origin: bottom;
 }
