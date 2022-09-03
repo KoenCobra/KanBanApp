@@ -534,7 +534,7 @@ main {
 .board-details .board-details-header .edit-delete-handler .edit-delete-modal .crud-icon {
   margin-right: 0.5rem;
 }
-.board-details .board-details-header .edit-delete-handler .edit-delete-modal.hide {
+.board-details .board-details-header .edit-delete-handler .edit-delete-modal.show {
   transform: scale(1);
   transform-origin: bottom;
 }

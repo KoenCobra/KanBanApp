@@ -9,20 +9,20 @@
         <div class="board-details-header">
             <p class="board-name">@State.Value.Board.name</p>
             <button @onclick="() => _isAddTaskShowing = true" class="add-task-btn btn">+ Add New Task</button>
-            <div class="edit-delete-handler">
-                <button @onclick="() => _isCrudShowing = !_isCrudShowing" class="btn">
-                    <img src="assets/icon-vertical-ellipsis.svg" alt="" />
+            <div class="edit-delete-handler ">
+                <button onclick="ToggleDropdown()" class="btn drop-btn">
+                    <img class="drop-btn" src="assets/icon-vertical-ellipsis.svg" alt="ellipis" />
                 </button>
-                <div class="edit-delete-modal @(_isCrudShowing? "hide" : "")">
-                        <button class="btn edit-board-btn" @onclick="() => _isUpdateShowing = true">
-                            <i class="fa-regular fa-pen-to-square crud-icon"></i>
-                            Edit Board
-                        </button>
-                        <button class="btn delete-board-btn" @onclick="DeleteBoard">
-                            <i class="fa-regular fa-trash-can crud-icon"></i>
-                            Delete Board
-                        </button>
-                    </div>
+                <div class="edit-delete-modal">
+                    <button class="btn edit-board-btn" @onclick="() => _isUpdateShowing = true">
+                        <i class="fa-regular fa-pen-to-square crud-icon"></i>
+                        Edit Board
+                    </button>
+                    <button class="btn delete-board-btn" @onclick="DeleteBoard">
+                        <i class="fa-regular fa-trash-can crud-icon"></i>
+                        Delete Board
+                    </button>
+                </div>
             </div>
         </div>
         <div class="columns">
@@ -104,4 +104,5 @@
         Facade.DeleteBoard(State.Value.Board.name);
         Facade.SetCurrentBoard(State.Value.Boards.FirstOrDefault().name);
     }
+
 }
