@@ -1,13 +1,16 @@
 ﻿@import "_Config.scss";
 
 .navbar {
-    width: 19.25rem;
-    height: 100vh;
+    min-width: 19.25rem;
     padding-left: 2rem;
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
     transition: $transition;
+    height: calc(100vh - 95px);
+    background-color: var(--white);
+    border-right: 1px solid $borderColor;
+
 
     &.hide {
         margin-left: -19.25rem;

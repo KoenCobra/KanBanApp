@@ -3,9 +3,11 @@
 .header {
     display: flex;
     align-items: center;
-    padding: 1.25rem 2rem 0 1.5rem;
+    padding: 1.25rem 2rem 1.25rem 1.5rem;
     justify-content: space-between;
     z-index: 1;
+    background-color: var(--white);
+    border-bottom: 1px solid $borderColor;
 
     .logo-board-name {
         display: flex;
@@ -18,13 +20,25 @@
             height: 1.6rem;
             width: 9.53rem;
             padding-bottom: 3.375rem;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 17.68rem;
+                height: 10rem;
+                right: 0;
+                top: -5.3rem;
+                bottom: 0;
+                border-right: 1px solid $borderColor;
+            }
         }
 
         .board-name {
             font-weight: 700;
             font-size: 1.5rem;
             color: var(--black);
-            padding-left: 7rem;
+            padding-left: 9.7rem;
         }
     }
 
@@ -32,9 +46,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 100%;
-        padding-right: 2rem;
-        padding-bottom: 2.125rem;
 
         .add-task-btn {
             background: var(--main-purple);
@@ -68,7 +79,7 @@
                 transition: $transition;
                 transform: scale(0);
                 transform-origin: top;
-                background-color: var(--body-background);
+                background-color: var(--white);
 
                 .edit-board-btn {
                     font-weight: 500;
