@@ -1,5 +1,12 @@
 ﻿@import "_Config.scss";
 
+.btn{
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 /* Box sizing rules */
 *,
 *::before,

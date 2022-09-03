@@ -5,11 +5,8 @@
 @inject StateFacade Facade
 
 <div class="navbar @(_isSideBarShowing ? "hide" : "")">
-    <div class="logo">
-        <div class="logo-container"></div>
-    </div>
+    <div class="logo"></div>
     <div class="boards">
-
         @if (State.Value.Boards is not null)
         {
             <h5 class="all-boards">ALL BOARDS <span>(@State.Value.Boards.Count)</span></h5>
@@ -31,7 +28,7 @@
     <div class="theme-section">
         <img src="assets/icon-light-theme.svg" alt="" />
         <label class="toggler-wrapper style-1">
-            <input type="checkbox" >
+            <input type="checkbox">
             <div class="toggler-slider">
                 <div class="toggler-knob"></div>
             </div>

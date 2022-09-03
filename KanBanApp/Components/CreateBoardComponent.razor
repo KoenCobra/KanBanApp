@@ -19,18 +19,20 @@
                 foreach (var column in Board.columns)
                 {
                     <div class="board-colums-input">
-                        <InputText @bind-Value="column.name" />
-                        <img @onclick="() => Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="" />
+                        <InputText class="column-name-input" @bind-Value="column.name" />
+                        <img @onclick="() => Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="cross" />
                     </div>
                 }
-                <button @onclick="AddColumns">Add New Column</button>
+                <button class="btn add-column-btn" @onclick="AddColumns">
+                    + Add New Column
+                </button>
             }
         </div>
     </EditForm>
-    <button @onclick="CreateBoard">create</button>
+    <button class="btn create-board-btn" @onclick="CreateBoard">Create New Board</button>
 </div>
 
-<div class="overlay"></div>
+<div @onclick="() => OnCreate.InvokeAsync()" class="overlay"></div>
 
 @code {
     private Board? Board { get; set; }
@@ -64,6 +66,7 @@
     private void CreateBoard()
     {
         State.Value.Boards.Add(Board);
+        Facade.SetCurrentBoard(Board.name);
         OnCreate.InvokeAsync();
     }
 

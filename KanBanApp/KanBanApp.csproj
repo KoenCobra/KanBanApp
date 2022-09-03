@@ -16,10 +16,16 @@
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\Sass\_BoardDetails.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\Sass\_BoardDetails.scss" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\Sass\_BoardDetails.scss" />
   </ItemGroup>
 
   <ItemGroup>

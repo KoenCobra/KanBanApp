@@ -10,6 +10,11 @@
     border-radius: 6px;
     padding: 2rem;
     width: 30rem;
+    animation: $fadeIn;
+
+    &.hide{
+
+    }
 
     .add-board-heading {
         font-weight: 700;
@@ -21,6 +26,7 @@
     .input {
         display: flex;
         flex-direction: column;
+        margin-top: 1.5rem;
 
         label {
             font-weight: 700;
@@ -34,6 +40,11 @@
             border-radius: 4px;
             height: 2.5rem;
             padding-left: 1rem;
+            color: var(--black);
+
+            &:focus {
+                outline: 1px solid var(--main-purple);
+            }
         }
 
         ::placeholder {
@@ -42,6 +53,46 @@
             color: var(--black);
             mix-blend-mode: normal;
             opacity: 0.25;
+        }
+
+        .board-colums-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+
+            .column-name-input {
+                flex-grow: 1;
+            }
+
+            img {
+                cursor: pointer;
+            }
+        }
+
+        .add-column-btn {
+            font-weight: 700;
+            font-size: 0.8125rem;
+            color: var(--main-purple);
+            cursor: pointer;
+            margin-top: 0.75rem;
+        }
+    }
+
+    .create-board-btn {
+        width: 100%;
+        margin-top: 1.5rem;
+        background-color: var(--main-purple);
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        color: var(--white);
+        padding: 0.65rem 0;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+            background-color: var(--hover-main-purple);
         }
     }
 }

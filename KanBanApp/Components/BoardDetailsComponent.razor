@@ -8,12 +8,22 @@
     <div class="board-details">
         <div class="board-details-header">
             <p class="board-name">@State.Value.Board.name</p>
-            <button @onclick="() => _isAddTaskShowing = true" class="add-task-btn">+ Add New Task</button>
-            <button class="edit-delete-btn">
-                <img src="assets/icon-vertical-ellipsis.svg" alt="" />
-            </button>
-            <button @onclick="DeleteBoard">delete</button>
-            <button @onclick="() => _isUpdateShowing = true">Update</button>
+            <button @onclick="() => _isAddTaskShowing = true" class="add-task-btn btn">+ Add New Task</button>
+            <div class="edit-delete-handler">
+                <button @onclick="() => _isCrudShowing = !_isCrudShowing" class="btn">
+                    <img src="assets/icon-vertical-ellipsis.svg" alt="" />
+                </button>
+                <div class="edit-delete-modal @(_isCrudShowing? "hide" : "")">
+                        <button class="btn edit-board-btn" @onclick="() => _isUpdateShowing = true">
+                            <i class="fa-regular fa-pen-to-square crud-icon"></i>
+                            Edit Board
+                        </button>
+                        <button class="btn delete-board-btn" @onclick="DeleteBoard">
+                            <i class="fa-regular fa-trash-can crud-icon"></i>
+                            Delete Board
+                        </button>
+                    </div>
+            </div>
         </div>
         <div class="columns">
             @foreach (var column in State.Value.Board.columns!)
@@ -72,6 +82,7 @@
     private bool _isTaskDetailsShowing;
     private bool _isAddTaskShowing;
     private bool _isAddColumnShowing;
+    private bool _isCrudShowing;
 
     private void ShowTaskDetails(Task task)
     {
@@ -82,10 +93,10 @@
     private void AddNewColumn()
     {
         State.Value.Board.columns!.Add(new Column
-        {
-            name = "",
-            tasks = new List<Task>()
-        });
+            {
+                name = "",
+                tasks = new List<Task>()
+            });
     }
 
     private void DeleteBoard()
