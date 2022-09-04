@@ -80,6 +80,7 @@
                 transform: scale(0);
                 transform-origin: top;
                 background-color: var(--white);
+                z-index: 1;
 
                 .edit-board-btn {
                     font-weight: 500;

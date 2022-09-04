@@ -1,0 +1,33 @@
+﻿@media (min-width: 1000px) {
+
+    .column::-webkit-scrollbar {
+        height: 7px;
+        width: 6px;
+        background: grey;
+        border-radius: 100px;
+    }
+
+    .column::-webkit-scrollbar-track {
+        background-color: darkgrey;
+    }
+
+    .column::-webkit-scrollbar-thumb:horizontal {
+        background: grey;
+        border-radius: 100px;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: grey;
+        border-radius: 100px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: lightgray;
+        border-radius: 100px;
+    }
+}
