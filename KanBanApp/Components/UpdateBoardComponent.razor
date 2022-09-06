@@ -3,30 +3,35 @@
 @inject StateFacade Facade
 @inject IState<KanbanState> State
 
-<EditForm Model="State.Value.Board">
-    <DataAnnotationsValidator />
-    <h2>Edit Board</h2>
-    <div class="input">
-        <label>Board Name</label>
-        <InputText @bind-Value="State.Value.Board.name" />
-    </div>
+<div class="edit-board">
+    <EditForm Model="State.Value.Board">
+        <DataAnnotationsValidator />
+        <h2 class="update-board-heading">Edit Board</h2>
+        <div class="input">
+            <label>Board Name</label>
+            <InputText @bind-Value="State.Value.Board.name" />
+        </div>
 
-    <div class="input">
-        <label>Board Columns</label>
-        @if (State.Value.Board != null && State.Value.Board.columns != null)
-        {
-            foreach (var column in State.Value.Board.columns)
+        <div class="input">
+            <label>Board Columns</label>
+            @if (State.Value.Board != null && State.Value.Board.columns != null)
             {
-                <div class="board-colums-input">
-                    <InputText type="text" @bind-Value="column.name" />
-                    <img @onclick="() => State.Value.Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="" />
-                </div>
+                foreach (var column in State.Value.Board.columns)
+                {
+                    <div class="board-colums-input">
+                        <InputText class="column-name-input" type="text" @bind-Value="column.name" />
+                        <img @onclick="() => State.Value.Board.columns.Remove(column)" src="assets/icon-cross.svg" alt="" />
+                    </div>
+                }
+                <button class="add-column-btn btn" @onclick="AddNewColumn">+ Add New Column</button>
             }
-            <button @onclick="AddNewColumn">Add New Column</button>
-        }
-    </div>
-</EditForm>
-<button type="submit" @onclick="UpdateBoard">Save Changes</button>
+        </div>
+    </EditForm>
+    <button class="update-board-btn btn" type="submit" @onclick="UpdateBoard">Save Changes</button>
+</div>
+
+<div @onclick="() => OnEdit.InvokeAsync()" class="overlay"></div>
+
 
 @code {
     [Parameter]

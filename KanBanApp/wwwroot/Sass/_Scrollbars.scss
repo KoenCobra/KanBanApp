@@ -1,33 +1,35 @@
-﻿@media (min-width: 1000px) {
+﻿@import "_Config.scss";
 
-    .column::-webkit-scrollbar {
+@media (min-width: 1000px) {
+
+    .tasks::-webkit-scrollbar {
         height: 7px;
         width: 6px;
-        background: grey;
-        border-radius: 100px;
+        background-color: transparent;
+        border-radius: 0;
     }
 
-    .column::-webkit-scrollbar-track {
-        background-color: darkgrey;
+    .tasks::-webkit-scrollbar-track {
+        background-color: transparent;
     }
 
-    .column::-webkit-scrollbar-thumb:horizontal {
-        background: grey;
-        border-radius: 100px;
+    .board-details::-webkit-scrollbar-thumb:horizontal {
+        background: var(--main-purple);
+        border-radius: 0;
     }
 
 
     ::-webkit-scrollbar {
-        width: 5px;
+        height: 8px;
     }
 
     ::-webkit-scrollbar-track {
-        background-color: grey;
-        border-radius: 100px;
+        background-color: transparent;
+        border-radius: 0;
     }
 
     ::-webkit-scrollbar-thumb {
-        background-color: lightgray;
-        border-radius: 100px;
+        background-color: var(--main-purple);
+        border-radius: 0;
     }
 }
